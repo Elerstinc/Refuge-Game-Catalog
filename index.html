@@ -1,193 +1,207 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Refuge Youth Game Catalog</title>
-<style>
-  :root{
-    --bg:#0b0f17; --panel:#0f1724; --panel2:#111a27; --stroke:rgba(255,255,255,.08);
-    --text:#e9eef7; --muted:#a9b6cb; --brand:#7aa2ff; --chip:#1b2a43; --chip2:#233657;
-    --shadow:0 14px 50px rgba(0,0,0,.40); --r:18px;
-  }
-  *{box-sizing:border-box}
-  body{
-    margin:0; color:var(--text);
-    font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-    background:
-      radial-gradient(1100px 700px at 20% 0%, rgba(122,162,255,.18), transparent 60%),
-      radial-gradient(900px 600px at 90% 20%, rgba(57,217,138,.10), transparent 55%),
-      var(--bg);
-  }
-  a{color:var(--brand); text-decoration:none}
-  header{
-    position:sticky; top:0; z-index:20;
-    backdrop-filter: blur(10px);
-    background: rgba(11,15,23,.72);
-    border-bottom:1px solid var(--stroke);
-  }
-  .wrap{max-width:1100px; margin:0 auto; padding:16px}
-  .row{display:flex; gap:12px; flex-wrap:wrap; align-items:center; justify-content:space-between}
-  .title{display:flex; gap:10px; align-items:center}
-  .logo{
-    width:40px; height:40px; border-radius:14px;
-    background: linear-gradient(135deg, rgba(122,162,255,.35), rgba(57,217,138,.18));
-    border:1px solid var(--stroke);
-    box-shadow: var(--shadow);
-    display:grid; place-items:center;
-    font-weight:900;
-  }
-  .title h1{font-size:16px; margin:0; letter-spacing:.2px}
-  .title .sub{font-size:12px; color:var(--muted)}
-  .controls{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
-  input, select, textarea{
-    background: rgba(255,255,255,.03);
-    color: var(--text);
-    border:1px solid var(--stroke);
-    border-radius: 14px;
-    padding:10px 12px;
-    outline:none;
-  }
-  input::placeholder, textarea::placeholder{color:rgba(169,182,203,.70)}
-  .btn{
-    cursor:pointer; user-select:none;
-    border:1px solid var(--stroke);
-    background: rgba(255,255,255,.04);
-    color: var(--text);
-    padding:10px 12px;
-    border-radius: 14px;
-    display:inline-flex; gap:8px; align-items:center;
-  }
-  .btn:hover{background: rgba(255,255,255,.06)}
-  .btn.primary{border-color: rgba(122,162,255,.35); background: rgba(122,162,255,.14)}
-  .btn.primary:hover{background: rgba(122,162,255,.18)}
-  .btn.warn{border-color: rgba(255,107,107,.28); background: rgba(255,107,107,.10)}
-  .chips{display:flex; gap:8px; flex-wrap:wrap; margin-top:12px}
-  .chip{
-    cursor:pointer;
-    background: var(--chip);
-    border:1px solid var(--stroke);
-    padding:7px 10px;
-    border-radius: 999px;
-    font-size:12px;
-    color: var(--muted);
-  }
-  .chip.on{background: var(--chip2); color: var(--text); border-color: rgba(122,162,255,.25)}
-  main{padding:18px 0 30px}
-  .meta{color:var(--muted); font-size:13px; margin:10px 0 0}
-  .grid{
-    margin-top:16px;
-    display:grid;
-    grid-template-columns: repeat( auto-fill, minmax(240px, 1fr) );
-    gap:14px;
-  }
-  .card{
-    background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
-    border:1px solid var(--stroke);
-    border-radius: var(--r);
-    box-shadow: var(--shadow);
-    padding:14px;
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-    cursor:pointer;
-    min-height: 160px;
-  }
-  .card:hover{border-color: rgba(122,162,255,.22)}
-  .cardTop{display:flex; gap:10px; align-items:flex-start; justify-content:space-between}
-  .icon{
-    width:42px; height:42px; border-radius: 16px;
-    background: rgba(122,162,255,.12);
-    border:1px solid rgba(122,162,255,.18);
-    display:grid; place-items:center;
-    font-size:20px;
-    flex:0 0 auto;
-  }
-  .name{font-weight:800; margin:0}
-  .small{font-size:12px; color: var(--muted)}
-  .tagrow{display:flex; flex-wrap:wrap; gap:6px}
-  .tag{
-    font-size:11px; color: var(--muted);
-    padding:4px 8px; border-radius:999px;
-    border:1px solid var(--stroke);
-    background: rgba(255,255,255,.03);
-  }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Refuge Youth Game Catalog</title>
+  <style>
+    :root{
+      --bg:#0b0f17; --panel:#0f1724; --panel2:#111a27; --stroke:rgba(255,255,255,.08);
+      --text:#e9eef7; --muted:#a9b6cb; --brand:#7aa2ff; --chip:#1b2a43; --chip2:#233657;
+      --shadow:0 14px 50px rgba(0,0,0,.40); --r:18px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; color:var(--text);
+      font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:
+        radial-gradient(1100px 700px at 20% 0%, rgba(122,162,255,.18), transparent 60%),
+        radial-gradient(900px 600px at 90% 20%, rgba(57,217,138,.10), transparent 55%),
+        var(--bg);
+    }
+    a{color:var(--brand); text-decoration:none}
+    header{
+      position:sticky; top:0; z-index:20;
+      backdrop-filter: blur(10px);
+      background: rgba(11,15,23,.72);
+      border-bottom:1px solid var(--stroke);
+    }
+    .wrap{max-width:1100px; margin:0 auto; padding:16px}
+    .row{display:flex; gap:12px; flex-wrap:wrap; align-items:center; justify-content:space-between}
+    .title{display:flex; gap:10px; align-items:center}
+    .logo{
+      width:40px; height:40px; border-radius:14px;
+      background: linear-gradient(135deg, rgba(122,162,255,.35), rgba(57,217,138,.18));
+      border:1px solid var(--stroke);
+      box-shadow: var(--shadow);
+      display:grid; place-items:center;
+      font-weight:900;
+    }
+    .title h1{font-size:16px; margin:0; letter-spacing:.2px}
+    .title .sub{font-size:12px; color:var(--muted)}
+    .controls{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
+    input, select, textarea{
+      background: rgba(255,255,255,.03);
+      color: var(--text);
+      border:1px solid var(--stroke);
+      border-radius: 14px;
+      padding:10px 12px;
+      outline:none;
+    }
+    input::placeholder, textarea::placeholder{color:rgba(169,182,203,.70)}
+    .btn{
+      cursor:pointer; user-select:none;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      padding:10px 12px;
+      border-radius: 14px;
+      display:inline-flex; gap:8px; align-items:center;
+    }
+    .btn:hover{background: rgba(255,255,255,.06)}
+    .btn.primary{border-color: rgba(122,162,255,.35); background: rgba(122,162,255,.14)}
+    .btn.primary:hover{background: rgba(122,162,255,.18)}
+    .btn.warn{border-color: rgba(255,107,107,.28); background: rgba(255,107,107,.10)}
+    .chips{display:flex; gap:8px; flex-wrap:wrap; margin-top:12px}
+    .chip{
+      cursor:pointer;
+      background: var(--chip);
+      border:1px solid var(--stroke);
+      padding:7px 10px;
+      border-radius: 999px;
+      font-size:12px;
+      color: var(--muted);
+    }
+    .chip.on{background: var(--chip2); color: var(--text); border-color: rgba(122,162,255,.25)}
+    main{padding:18px 0 30px}
+    .meta{color:var(--muted); font-size:13px; margin:10px 0 0}
+    .grid{
+      margin-top:16px;
+      display:grid;
+      grid-template-columns: repeat( auto-fill, minmax(240px, 1fr) );
+      gap:14px;
+    }
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border:1px solid var(--stroke);
+      border-radius: var(--r);
+      box-shadow: var(--shadow);
+      padding:14px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      cursor:pointer;
+      min-height: 160px;
+    }
+    .card:hover{border-color: rgba(122,162,255,.22)}
+    .cardTop{display:flex; gap:10px; align-items:flex-start; justify-content:space-between}
+    .icon{
+      width:42px; height:42px; border-radius: 16px;
+      background: rgba(122,162,255,.12);
+      border:1px solid rgba(122,162,255,.18);
+      display:grid; place-items:center;
+      font-size:20px;
+      flex:0 0 auto;
+    }
+    .name{font-weight:800; margin:0}
+    .small{font-size:12px; color: var(--muted)}
+    .tagrow{display:flex; flex-wrap:wrap; gap:6px}
+    .tag{
+      font-size:11px; color: var(--muted);
+      padding:4px 8px; border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.03);
+    }
 
-  /* Modal */
-  .modalBack{
-    position:fixed; inset:0; z-index:50;
-    background: rgba(0,0,0,.58);
-    display:none;
-    padding:18px;
-  }
-  .modalBack.show{display:block}
-  .modal{
-    max-width: 920px;
-    margin: 0 auto;
-    background: var(--panel);
-    border:1px solid var(--stroke);
-    border-radius: 22px;
-    box-shadow: var(--shadow);
-    overflow:hidden;
-  }
-  .modalHead{
-    padding:14px 16px;
-    background: rgba(255,255,255,.03);
-    border-bottom:1px solid var(--stroke);
-    display:flex; align-items:center; justify-content:space-between; gap:12px;
-  }
-  .modalHead .left{display:flex; gap:12px; align-items:center}
-  .modalBody{padding:16px}
-  .cols{display:grid; grid-template-columns: 1.15fr .85fr; gap:14px}
-  @media(max-width: 860px){ .cols{grid-template-columns:1fr} }
-  .panel{
-    background: rgba(255,255,255,.03);
-    border:1px solid var(--stroke);
-    border-radius: 18px;
-    padding:12px;
-  }
-  .panel h3{margin:0 0 8px; font-size:13px; color: var(--muted); letter-spacing:.25px; text-transform:uppercase}
-  .steps{margin:0; padding-left:18px}
-  .steps li{margin:6px 0}
-  .mediaGrid{display:grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap:10px}
-  .mediaGrid img{
-    width:100%; height:120px; object-fit:cover;
-    border-radius: 14px; border:1px solid var(--stroke);
-    background: rgba(255,255,255,.02);
-  }
-  .iframeWrap{aspect-ratio: 16 / 9; border-radius:18px; overflow:hidden; border:1px solid var(--stroke)}
-  .iframeWrap iframe{width:100%; height:100%; border:0}
+    /* Modal */
+    .modalBack{
+      position:fixed; inset:0; z-index:50;
+      background: rgba(0,0,0,.58);
+      display:none;
+      padding:18px;
+      overflow:auto;
+    }
+    .modalBack.show{display:block}
+    .modal{
+      max-width: 920px;
+      margin: 0 auto;
+      background: var(--panel);
+      border:1px solid var(--stroke);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .modalHead{
+      padding:14px 16px;
+      background: rgba(255,255,255,.03);
+      border-bottom:1px solid var(--stroke);
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+    }
+    .modalHead .left{display:flex; gap:12px; align-items:center}
+    .modalBody{padding:16px}
+    .cols{display:grid; grid-template-columns: 1.15fr .85fr; gap:14px}
+    @media(max-width: 860px){ .cols{grid-template-columns:1fr} }
+    .panel{
+      background: rgba(255,255,255,.03);
+      border:1px solid var(--stroke);
+      border-radius: 18px;
+      padding:12px;
+    }
+    .panel h3{margin:0 0 8px; font-size:13px; color: var(--muted); letter-spacing:.25px; text-transform:uppercase}
+    .steps{margin:0; padding-left:18px}
+    .steps li{margin:6px 0}
+    .mediaGrid{display:grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap:10px}
+    .mediaGrid img{
+      width:100%; height:120px; object-fit:cover;
+      border-radius: 14px; border:1px solid var(--stroke);
+      background: rgba(255,255,255,.02);
+    }
+    .iframeWrap{aspect-ratio: 16 / 9; border-radius:18px; overflow:hidden; border:1px solid var(--stroke)}
+    .iframeWrap iframe{width:100%; height:100%; border:0}
 
-  /* Admin drawer */
-  .adminBack{
-    position:fixed; inset:0; z-index:60;
-    background: rgba(0,0,0,.62);
-    display:none;
-    padding:18px;
-  }
-  .adminBack.show{display:block}
-  .admin{
-    max-width: 980px; margin:0 auto;
-    background: var(--panel2);
-    border:1px solid var(--stroke);
-    border-radius: 22px;
-    box-shadow: var(--shadow);
-    overflow:hidden;
-  }
-  .adminHead{
-    padding:14px 16px;
-    background: rgba(255,255,255,.03);
-    border-bottom:1px solid var(--stroke);
-    display:flex; align-items:center; justify-content:space-between; gap:12px;
-  }
-  .adminBody{padding:16px}
-  .formGrid{display:grid; grid-template-columns: 1fr 1fr; gap:12px}
-  @media(max-width: 860px){ .formGrid{grid-template-columns:1fr} }
-  .full{grid-column:1/-1}
-  label{display:block; font-size:12px; color:var(--muted); margin:2px 0 6px}
-  textarea{min-height:90px; resize:vertical}
-  .hint{font-size:12px; color:var(--muted); margin-top:8px}
-</style>
+    /* Admin drawer (SCROLL FIX INCLUDED) */
+    .adminBack{
+      position:fixed; inset:0; z-index:60;
+      background: rgba(0,0,0,.62);
+      display:none;
+      padding:18px;
+      overflow:auto; /* allows scrolling if admin exceeds viewport */
+    }
+    .adminBack.show{display:block}
+    .admin{
+      max-width: 980px; margin:0 auto;
+      background: var(--panel2);
+      border:1px solid var(--stroke);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+
+      max-height: calc(100vh - 36px);
+      display:flex;
+      flex-direction:column;
+
+      overflow:hidden;
+    }
+    .adminHead{
+      padding:14px 16px;
+      background: rgba(255,255,255,.03);
+      border-bottom:1px solid var(--stroke);
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+      flex: 0 0 auto;
+    }
+    .adminBody{
+      padding:16px;
+      overflow:auto; /* scroll inside */
+      flex: 1 1 auto;
+    }
+
+    .formGrid{display:grid; grid-template-columns: 1fr 1fr; gap:12px}
+    @media(max-width: 860px){ .formGrid{grid-template-columns:1fr} }
+    .full{grid-column:1/-1}
+    label{display:block; font-size:12px; color:var(--muted); margin:2px 0 6px}
+    textarea{min-height:90px; resize:vertical}
+    .hint{font-size:12px; color:var(--muted); margin-top:8px}
+    code{color:rgba(233,238,247,.9)}
+  </style>
 </head>
 <body>
 <header>
@@ -211,7 +225,7 @@
           <option value="category">Category</option>
         </select>
         <button class="btn primary" id="suggestBtn">Submit Suggestion</button>
-        <button class="btn" id="adminBtn">Admin: Build JSON</button>
+        <button class="btn" id="adminBtn">Admin</button>
       </div>
     </div>
 
@@ -242,10 +256,17 @@
     </div>
     <div class="modalBody">
       <div class="cols">
-        <div class="panel">
-          <h3>How to play</h3>
-          <div class="small" id="mSetup"></div>
-          <ol class="steps" id="mSteps"></ol>
+        <div style="display:flex; flex-direction:column; gap:12px">
+          <div class="panel">
+            <h3>Rules</h3>
+            <div class="small" id="mRules"></div>
+          </div>
+
+          <div class="panel">
+            <h3>How to play</h3>
+            <div class="small" id="mSetup"></div>
+            <ol class="steps" id="mSteps"></ol>
+          </div>
         </div>
 
         <div style="display:flex; flex-direction:column; gap:12px">
@@ -279,20 +300,32 @@
   <div class="admin">
     <div class="adminHead">
       <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap">
-        <div style="font-weight:900">Admin JSON Builder</div>
-        <div class="small">Create/edit entries locally → download updated <code>games.json</code> → commit to GitHub.</div>
+        <div style="font-weight:900">Admin</div>
+        <div class="small">
+          Edit locally → <b>Save</b> updates preview → <b>Download games.json</b> → commit to GitHub to publish.
+        </div>
       </div>
       <button class="btn" id="aClose">Close</button>
     </div>
+
     <div class="adminBody">
       <div class="formGrid">
         <div>
-          <label>Pick existing game to edit</label>
+          <label>Pick existing entry to edit</label>
           <select id="aPick"></select>
         </div>
         <div>
-          <label>Or create new (ID auto-generated from title)</label>
+          <label>Create new entry</label>
           <button class="btn" id="aNew">New entry</button>
+        </div>
+
+        <div>
+          <label>ID (locked for existing entries)</label>
+          <input id="aId" placeholder="auto-generated" readonly />
+        </div>
+        <div>
+          <label>Regenerate ID from title (changes the ID)</label>
+          <button class="btn" id="aReId">Regenerate</button>
         </div>
 
         <div>
@@ -346,6 +379,11 @@
         </div>
 
         <div class="full">
+          <label>Rules (overview / core rules)</label>
+          <textarea id="aRules" placeholder="Core rules, win condition, boundaries…"></textarea>
+        </div>
+
+        <div class="full">
           <label>Setup (short)</label>
           <textarea id="aSetup" placeholder="How to set up the game…"></textarea>
         </div>
@@ -373,18 +411,19 @@
         <div class="full">
           <label>Video embed URL (optional)</label>
           <input id="aVideo" placeholder="https://www.youtube.com/embed/VIDEO_ID" />
-          <div class="hint">Use YouTube “embed” links. If empty, no video appears.</div>
+          <div class="hint">If empty, no video appears.</div>
         </div>
 
         <div class="full" style="display:flex; gap:10px; flex-wrap:wrap; align-items:center">
-          <button class="btn primary" id="aSave">Save entry (in this editor)</button>
+          <button class="btn primary" id="aSave">Save (updates preview)</button>
           <button class="btn" id="aDownload">Download games.json</button>
           <button class="btn warn" id="aDelete">Delete entry</button>
           <input class="btn" type="file" id="aImport" accept="application/json" />
         </div>
 
         <div class="full hint">
-          This editor does not write to GitHub automatically. You download the JSON and commit it. Thus: only you control the truth.
+          This site is static. “Publish” happens when you commit the downloaded games.json to GitHub.
+          Draft edits are stored in your browser (localStorage) until you publish.
         </div>
       </div>
     </div>
@@ -392,26 +431,46 @@
 </div>
 
 <script>
+  // =========================
+  // CONFIG
+  // =========================
+
+  // Change this PIN.
+  const ADMIN_PIN = "2468";
+
+  // When unlocked once, remain unlocked until tab closes.
+  const ADMIN_SESSION_KEY = "refuge_admin_unlocked";
+
+  // Draft storage key (keeps your work before you commit).
+  const DRAFT_STORAGE_KEY = "refuge_games_draft_v1";
+
+  // After you publish the repo, set this:
+  // Example: "https://github.com/USERNAME/REPO/issues/new?template=game_suggestion.yml"
+  window.SUGGEST_URL = "";
+
+  // =========================
+  // APP STATE
+  // =========================
   const state = {
     all: [],
     tags: [],
     activeTags: new Set(),
-    activeCategory: null, // 'Physical' | 'Mental' | 'Event' | null
-    q: '',
-    sort: 'az',
+    activeCategory: null,
+    q: "",
+    sort: "az",
     selected: null,
-    draft: null // admin editor working copy
+    draft: null
   };
 
   const el = (id) => document.getElementById(id);
 
   function slugify(str){
-    return String(str || '')
+    return String(str || "")
       .trim().toLowerCase()
-      .replace(/['"]/g,'')
-      .replace(/[^a-z0-9]+/g,'-')
-      .replace(/^-+|-+$/g,'')
-      .slice(0,80) || 'new-game';
+      .replace(/['"]/g,"")
+      .replace(/[^a-z0-9]+/g,"-")
+      .replace(/^-+|-+$/g,"")
+      .slice(0,80) || "new-game";
   }
 
   function uniq(arr){ return [...new Set(arr)].sort((a,b)=>a.localeCompare(b)); }
@@ -420,26 +479,21 @@
     const set = new Set();
     for(const g of games){
       (g.tags || []).forEach(t => set.add(String(t).trim().toLowerCase()));
-      // categories become filter chips too
     }
-    const tags = uniq([...set].filter(Boolean));
-    // Ensure categories chips exist
-    return tags;
+    return uniq([...set].filter(Boolean));
   }
 
   function matches(g, q){
     if(!q) return true;
     const s = q.toLowerCase();
     const fields = [
-      g.title, g.category, (g.tags||[]).join(' '), (g.keywords||[]).join(' ')
-    ].join(' ').toLowerCase();
+      g.title, g.category, (g.tags||[]).join(" "), (g.keywords||[]).join(" "), g.rules
+    ].join(" ").toLowerCase();
     return fields.includes(s);
   }
 
   function passesFilters(g){
-    // category filter: by chip "category:..."
     if(state.activeCategory && String(g.category) !== state.activeCategory) return false;
-    // tag filters: all selected tags must be present
     const gtags = new Set((g.tags||[]).map(x=>String(x).toLowerCase()));
     for(const t of state.activeTags){
       if(!gtags.has(t)) return false;
@@ -451,25 +505,24 @@
     const a = [...list];
     const byTitle = (x,y)=>String(x.title).localeCompare(String(y.title));
     switch(state.sort){
-      case 'az': a.sort(byTitle); break;
-      case 'za': a.sort((x,y)=>-byTitle(x,y)); break;
-      case 'energy_hi': a.sort((x,y)=>(Number(y.energy)||0)-(Number(x.energy)||0) || byTitle(x,y)); break;
-      case 'energy_lo': a.sort((x,y)=>(Number(x.energy)||0)-(Number(y.energy)||0) || byTitle(x,y)); break;
-      case 'category': a.sort((x,y)=>String(x.category).localeCompare(String(y.category)) || byTitle(x,y)); break;
+      case "az": a.sort(byTitle); break;
+      case "za": a.sort((x,y)=>-byTitle(x,y)); break;
+      case "energy_hi": a.sort((x,y)=>(Number(y.energy)||0)-(Number(x.energy)||0) || byTitle(x,y)); break;
+      case "energy_lo": a.sort((x,y)=>(Number(x.energy)||0)-(Number(y.energy)||0) || byTitle(x,y)); break;
+      case "category": a.sort((x,y)=>String(x.category).localeCompare(String(y.category)) || byTitle(x,y)); break;
       default: a.sort(byTitle);
     }
     return a;
   }
 
   function renderChips(){
-    const holder = el('chips');
-    holder.innerHTML = '';
+    const holder = el("chips");
+    holder.innerHTML = "";
 
-    // Category chips first
-    const cats = ['Physical','Mental','Event'];
+    const cats = ["Physical","Mental","Event"];
     cats.forEach(c=>{
-      const b = document.createElement('div');
-      b.className = 'chip' + (state.activeCategory===c ? ' on' : '');
+      const b = document.createElement("div");
+      b.className = "chip" + (state.activeCategory===c ? " on" : "");
       b.textContent = c;
       b.onclick = ()=>{
         state.activeCategory = (state.activeCategory===c ? null : c);
@@ -478,11 +531,10 @@
       holder.appendChild(b);
     });
 
-    // Tag chips
     state.tags.forEach(t=>{
-      const b = document.createElement('div');
-      b.className = 'chip' + (state.activeTags.has(t) ? ' on' : '');
-      b.textContent = '#' + t;
+      const b = document.createElement("div");
+      b.className = "chip" + (state.activeTags.has(t) ? " on" : "");
+      b.textContent = "#" + t;
       b.onclick = ()=>{
         if(state.activeTags.has(t)) state.activeTags.delete(t);
         else state.activeTags.add(t);
@@ -493,29 +545,29 @@
   }
 
   function card(g){
-    const d = document.createElement('div');
-    d.className = 'card';
+    const d = document.createElement("div");
+    d.className = "card";
     d.onclick = ()=>openModal(g);
 
-    const top = document.createElement('div');
-    top.className = 'cardTop';
+    const top = document.createElement("div");
+    top.className = "cardTop";
 
-    const left = document.createElement('div');
-    left.style.display = 'flex';
-    left.style.gap = '10px';
-    left.style.alignItems = 'flex-start';
+    const left = document.createElement("div");
+    left.style.display = "flex";
+    left.style.gap = "10px";
+    left.style.alignItems = "flex-start";
 
-    const ic = document.createElement('div');
-    ic.className = 'icon';
-    ic.textContent = (g.icon || '🎲');
+    const ic = document.createElement("div");
+    ic.className = "icon";
+    ic.textContent = (g.icon || "🎲");
 
-    const text = document.createElement('div');
-    const name = document.createElement('div');
-    name.className = 'name';
-    name.textContent = g.title || 'Untitled';
-    const small = document.createElement('div');
-    small.className = 'small';
-    small.textContent = `${g.category || 'Uncategorized'} • Energy ${Number(g.energy)||0}/5`;
+    const text = document.createElement("div");
+    const name = document.createElement("div");
+    name.className = "name";
+    name.textContent = g.title || "Untitled";
+    const small = document.createElement("div");
+    small.className = "small";
+    small.textContent = `${g.category || "Uncategorized"} • Energy ${Number(g.energy)||0}/5`;
 
     text.appendChild(name);
     text.appendChild(small);
@@ -523,27 +575,27 @@
     left.appendChild(ic);
     left.appendChild(text);
 
-    const right = document.createElement('div');
-    right.className = 'small';
-    const tm = g.timeMinutes ? `${g.timeMinutes} min` : '';
-    const sz = g.groupSize ? `${g.groupSize}` : '';
-    right.textContent = [tm, sz].filter(Boolean).join(' • ');
+    const right = document.createElement("div");
+    right.className = "small";
+    const tm = g.timeMinutes ? `${g.timeMinutes} min` : "";
+    const sz = g.groupSize ? `${g.groupSize}` : "";
+    right.textContent = [tm, sz].filter(Boolean).join(" • ");
 
     top.appendChild(left);
     top.appendChild(right);
 
-    const tagrow = document.createElement('div');
-    tagrow.className = 'tagrow';
+    const tagrow = document.createElement("div");
+    tagrow.className = "tagrow";
     (g.tags||[]).slice(0,6).forEach(t=>{
-      const s = document.createElement('span');
-      s.className = 'tag';
+      const s = document.createElement("span");
+      s.className = "tag";
       s.textContent = t;
       tagrow.appendChild(s);
     });
 
-    const hint = document.createElement('div');
-    hint.className = 'small';
-    hint.textContent = (g.keywords||[]).slice(0,6).join(' • ');
+    const hint = document.createElement("div");
+    hint.className = "small";
+    hint.textContent = (g.keywords||[]).slice(0,6).join(" • ");
 
     d.appendChild(top);
     d.appendChild(tagrow);
@@ -559,40 +611,44 @@
 
     const sorted = sortGames(filtered);
 
-    el('grid').innerHTML = '';
-    sorted.forEach(g => el('grid').appendChild(card(g)));
+    el("grid").innerHTML = "";
+    sorted.forEach(g => el("grid").appendChild(card(g)));
 
     const chipText = [
       state.activeCategory ? `Category: ${state.activeCategory}` : null,
-      state.activeTags.size ? `Tags: ${[...state.activeTags].join(', ')}` : null,
+      state.activeTags.size ? `Tags: ${[...state.activeTags].join(", ")}` : null,
       state.q ? `Search: "${state.q}"` : null
-    ].filter(Boolean).join(' • ');
+    ].filter(Boolean).join(" • ");
 
-    el('meta').textContent = `${sorted.length} shown / ${state.all.length} total` + (chipText ? ` — ${chipText}` : '');
+    el("meta").textContent = `${sorted.length} shown / ${state.all.length} total` + (chipText ? ` — ${chipText}` : "");
   }
 
-  // Modal
+  // =========================
+  // MODAL
+  // =========================
   function openModal(g){
     state.selected = g;
-    el('mIcon').textContent = g.icon || '🎲';
-    el('mTitle').textContent = g.title || '';
-    el('mCategory').textContent = g.category || '';
+    el("mIcon").textContent = g.icon || "🎲";
+    el("mTitle").textContent = g.title || "";
+    el("mCategory").textContent = g.category || "";
 
-    const tagHolder = el('mTags');
-    tagHolder.innerHTML = '';
+    const tagHolder = el("mTags");
+    tagHolder.innerHTML = "";
     (g.tags||[]).forEach(t=>{
-      const s = document.createElement('span');
-      s.className = 'tag';
+      const s = document.createElement("span");
+      s.className = "tag";
       s.textContent = t;
       tagHolder.appendChild(s);
     });
 
-    el('mSetup').textContent = g.setup ? `Setup: ${g.setup}` : 'Setup: (not added yet)';
-    const steps = el('mSteps');
-    steps.innerHTML = '';
-    const arr = (g.howToPlay && g.howToPlay.length) ? g.howToPlay : ['(How-to steps not added yet)'];
+    el("mRules").textContent = g.rules ? g.rules : "(Rules not added yet)";
+    el("mSetup").textContent = g.setup ? `Setup: ${g.setup}` : "Setup: (not added yet)";
+
+    const steps = el("mSteps");
+    steps.innerHTML = "";
+    const arr = (g.howToPlay && g.howToPlay.length) ? g.howToPlay : ["(How-to steps not added yet)"];
     arr.forEach(step=>{
-      const li = document.createElement('li');
+      const li = document.createElement("li");
       li.textContent = step;
       steps.appendChild(li);
     });
@@ -602,157 +658,195 @@
     if(g.groupSize) quick.push(`Group size: ${g.groupSize}`);
     if(g.timeMinutes) quick.push(`Time: ${g.timeMinutes} min`);
     quick.push(`Energy: ${Number(g.energy)||0}/5`);
-    if(g.materials && g.materials.length) quick.push(`Materials: ${g.materials.join(', ')}`);
-    el('mQuick').textContent = quick.join(' • ');
+    if(g.materials && g.materials.length) quick.push(`Materials: ${g.materials.join(", ")}`);
+    el("mQuick").textContent = quick.join(" • ");
 
-    el('mSafety').textContent = g.safetyNotes ? `Safety: ${g.safetyNotes}` : 'Safety: (not added yet)';
-    el('mTips').textContent = g.leaderTips ? `Tips: ${g.leaderTips}` : 'Tips: (not added yet)';
+    el("mSafety").textContent = g.safetyNotes ? `Safety: ${g.safetyNotes}` : "Safety: (not added yet)";
+    el("mTips").textContent = g.leaderTips ? `Tips: ${g.leaderTips}` : "Tips: (not added yet)";
 
-    // Media
-    const photos = el('mPhotos');
-    photos.innerHTML = '';
+    const photos = el("mPhotos");
+    photos.innerHTML = "";
     (g.photos||[]).forEach(p=>{
-      const img = document.createElement('img');
+      const img = document.createElement("img");
       img.src = p;
       img.alt = g.title;
       photos.appendChild(img);
     });
 
     const hasVideo = !!(g.videoEmbedUrl && String(g.videoEmbedUrl).trim());
-    el('mVideoWrap').style.display = hasVideo ? 'block' : 'none';
-    el('mVideo').src = hasVideo ? g.videoEmbedUrl : '';
+    el("mVideoWrap").style.display = hasVideo ? "block" : "none";
+    el("mVideo").src = hasVideo ? g.videoEmbedUrl : "";
 
-    el('modalBack').classList.add('show');
+    el("modalBack").classList.add("show");
   }
 
   function closeModal(){
-    el('modalBack').classList.remove('show');
-    el('mVideo').src = '';
+    el("modalBack").classList.remove("show");
+    el("mVideo").src = "";
   }
 
-  // Admin editor
-  function openAdmin(){
-    // work on a deep copy so browsing state stays pure until download
-    state.draft = JSON.parse(JSON.stringify({ games: state.all }));
-    refreshPick();
-    loadIntoForm(state.draft.games[0] || blankGame());
-    el('adminBack').classList.add('show');
-  }
-  function closeAdmin(){ el('adminBack').classList.remove('show'); }
+  // =========================
+  // ADMIN PIN GATE
+  // =========================
+  function requireAdminPin(){
+    if (sessionStorage.getItem(ADMIN_SESSION_KEY) === "1") return true;
 
+    const entered = prompt("Enter admin PIN:");
+    if (entered === null) return false;
+
+    if (String(entered).trim() === ADMIN_PIN){
+      sessionStorage.setItem(ADMIN_SESSION_KEY, "1");
+      return true;
+    }
+    alert("Incorrect PIN.");
+    return false;
+  }
+
+  // =========================
+  // ADMIN EDITOR
+  // =========================
   function blankGame(){
     return {
-      id: 'new-game',
-      title: '',
-      icon: '🎲',
-      category: 'Physical',
+      id: "new-game",
+      title: "",
+      icon: "🎲",
+      category: "Physical",
       tags: [],
       keywords: [],
-      ageRange: '',
-      groupSize: '',
-      timeMinutes: '',
+      ageRange: "",
+      groupSize: "",
+      timeMinutes: "",
       energy: 3,
       materials: [],
-      setup: '',
+      rules: "",
+      setup: "",
       howToPlay: [],
-      safetyNotes: '',
-      leaderTips: '',
+      safetyNotes: "",
+      leaderTips: "",
       photos: [],
-      videoEmbedUrl: ''
+      videoEmbedUrl: ""
     };
   }
 
   function refreshPick(){
-    const pick = el('aPick');
-    pick.innerHTML = '';
+    const pick = el("aPick");
+    pick.innerHTML = "";
     state.draft.games
       .slice()
       .sort((a,b)=>String(a.title).localeCompare(String(b.title)))
       .forEach(g=>{
-        const o = document.createElement('option');
+        const o = document.createElement("option");
         o.value = g.id;
         o.textContent = g.title || g.id;
         pick.appendChild(o);
       });
+
     pick.onchange = ()=>{
       const g = state.draft.games.find(x=>x.id===pick.value);
       if(g) loadIntoForm(g);
     };
   }
 
-  function formToGame(){
-    const title = el('aTitle').value.trim();
-    const id = slugify(title);
-    const icon = el('aIcon').value.trim() || '🎲';
-    const category = el('aCategory').value;
-    const energy = Number(el('aEnergy').value || 3);
-    const tags = el('aTags').value.split(',').map(x=>x.trim().toLowerCase()).filter(Boolean);
-    const keywords = el('aKeywords').value.split(',').map(x=>x.trim().toLowerCase()).filter(Boolean);
-    const ageRange = el('aAge').value.trim();
-    const groupSize = el('aSize').value.trim();
-    const timeMinutes = el('aTime').value.trim();
-    const materials = el('aMaterials').value.split(',').map(x=>x.trim()).filter(Boolean);
-    const setup = el('aSetup').value.trim();
-    const howToPlay = el('aSteps').value.split('\n').map(x=>x.trim()).filter(Boolean);
-    const safetyNotes = el('aSafety').value.trim();
-    const leaderTips = el('aTips').value.trim();
-    const photos = el('aPhotos').value.split('\n').map(x=>x.trim()).filter(Boolean);
-    const videoEmbedUrl = el('aVideo').value.trim();
-
-    return { id, title, icon, category, tags, keywords, ageRange, groupSize, timeMinutes, energy, materials, setup, howToPlay, safetyNotes, leaderTips, photos, videoEmbedUrl };
+  function loadIntoForm(g){
+    el("aId").value = g.id || "";
+    el("aTitle").value = g.title || "";
+    el("aIcon").value = g.icon || "";
+    el("aCategory").value = g.category || "Physical";
+    el("aEnergy").value = g.energy ?? 3;
+    el("aTags").value = (g.tags||[]).join(", ");
+    el("aKeywords").value = (g.keywords||[]).join(", ");
+    el("aAge").value = g.ageRange || "";
+    el("aSize").value = g.groupSize || "";
+    el("aTime").value = g.timeMinutes || "";
+    el("aMaterials").value = (g.materials||[]).join(", ");
+    el("aRules").value = g.rules || "";
+    el("aSetup").value = g.setup || "";
+    el("aSteps").value = (g.howToPlay||[]).join("\n");
+    el("aSafety").value = g.safetyNotes || "";
+    el("aTips").value = g.leaderTips || "";
+    el("aPhotos").value = (g.photos||[]).join("\n");
+    el("aVideo").value = g.videoEmbedUrl || "";
   }
 
-  function loadIntoForm(g){
-    el('aTitle').value = g.title || '';
-    el('aIcon').value = g.icon || '';
-    el('aCategory').value = g.category || 'Physical';
-    el('aEnergy').value = g.energy ?? 3;
-    el('aTags').value = (g.tags||[]).join(', ');
-    el('aKeywords').value = (g.keywords||[]).join(', ');
-    el('aAge').value = g.ageRange || '';
-    el('aSize').value = g.groupSize || '';
-    el('aTime').value = g.timeMinutes || '';
-    el('aMaterials').value = (g.materials||[]).join(', ');
-    el('aSetup').value = g.setup || '';
-    el('aSteps').value = (g.howToPlay||[]).join('\n');
-    el('aSafety').value = g.safetyNotes || '';
-    el('aTips').value = g.leaderTips || '';
-    el('aPhotos').value = (g.photos||[]).join('\n');
-    el('aVideo').value = g.videoEmbedUrl || '';
+  function formToGame(){
+    const lockedId = el("aId").value.trim();
+    const title = el("aTitle").value.trim();
+    const id = lockedId || slugify(title);
+
+    const icon = el("aIcon").value.trim() || "🎲";
+    const category = el("aCategory").value;
+    const energy = Number(el("aEnergy").value || 3);
+    const tags = el("aTags").value.split(",").map(x=>x.trim().toLowerCase()).filter(Boolean);
+    const keywords = el("aKeywords").value.split(",").map(x=>x.trim().toLowerCase()).filter(Boolean);
+    const ageRange = el("aAge").value.trim();
+    const groupSize = el("aSize").value.trim();
+    const timeMinutes = el("aTime").value.trim();
+    const materials = el("aMaterials").value.split(",").map(x=>x.trim()).filter(Boolean);
+    const rules = el("aRules").value.trim();
+    const setup = el("aSetup").value.trim();
+    const howToPlay = el("aSteps").value.split("\n").map(x=>x.trim()).filter(Boolean);
+    const safetyNotes = el("aSafety").value.trim();
+    const leaderTips = el("aTips").value.trim();
+    const photos = el("aPhotos").value.split("\n").map(x=>x.trim()).filter(Boolean);
+    const videoEmbedUrl = el("aVideo").value.trim();
+
+    return { id, title, icon, category, tags, keywords, ageRange, groupSize, timeMinutes, energy, materials, rules, setup, howToPlay, safetyNotes, leaderTips, photos, videoEmbedUrl };
   }
 
   function saveEntry(){
     const g = formToGame();
     if(!g.title){
-      alert('Title required.');
+      alert("Title required.");
       return;
     }
-    // Replace or add by id
+
+    // Lock ID into the form
+    el("aId").value = g.id;
+
     const idx = state.draft.games.findIndex(x=>x.id===g.id);
     if(idx >= 0) state.draft.games[idx] = g;
     else state.draft.games.push(g);
 
+    // Persist draft
+    localStorage.setItem(DRAFT_STORAGE_KEY, JSON.stringify({ games: state.draft.games }));
+
+    // LIVE PREVIEW update
+    state.all = JSON.parse(JSON.stringify(state.draft.games));
+    state.tags = computeTagCloud(state.all);
+    renderChips();
+    render();
+
     refreshPick();
-    el('aPick').value = g.id;
-    alert('Saved in editor. Download games.json when ready.');
+    el("aPick").value = g.id;
+
+    alert("Saved. Preview updated. Download games.json to publish.");
   }
 
   function deleteEntry(){
     const g = formToGame();
     const idx = state.draft.games.findIndex(x=>x.id===g.id);
-    if(idx < 0){ alert('Nothing to delete.'); return; }
+    if(idx < 0){ alert("Nothing to delete."); return; }
     if(!confirm(`Delete "${g.title}"?`)) return;
+
     state.draft.games.splice(idx, 1);
+    localStorage.setItem(DRAFT_STORAGE_KEY, JSON.stringify({ games: state.draft.games }));
+
+    // Update preview
+    state.all = JSON.parse(JSON.stringify(state.draft.games));
+    state.tags = computeTagCloud(state.all);
+    renderChips();
+    render();
+
     refreshPick();
     loadIntoForm(state.draft.games[0] || blankGame());
   }
 
   function downloadJSON(){
     const payload = JSON.stringify({ games: state.draft.games }, null, 2);
-    const blob = new Blob([payload], {type:'application/json'});
-    const a = document.createElement('a');
+    const blob = new Blob([payload], {type:"application/json"});
+    const a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
-    a.download = 'games.json';
+    a.download = "games.json";
     a.click();
     URL.revokeObjectURL(a.href);
   }
@@ -762,88 +856,126 @@
     reader.onload = ()=>{
       try{
         const data = JSON.parse(reader.result);
-        if(!data || !Array.isArray(data.games)) throw new Error('Invalid format');
+        if(!data || !Array.isArray(data.games)) throw new Error("Invalid format");
         state.draft = data;
+        localStorage.setItem(DRAFT_STORAGE_KEY, JSON.stringify({ games: state.draft.games }));
+
+        // Update preview
+        state.all = JSON.parse(JSON.stringify(state.draft.games));
+        state.tags = computeTagCloud(state.all);
+        renderChips();
+        render();
+
         refreshPick();
         loadIntoForm(state.draft.games[0] || blankGame());
-        alert('Imported into editor. Download games.json to commit changes.');
+        alert("Imported into editor. Preview updated.");
       }catch(e){
-        alert('Import failed: ' + e.message);
+        alert("Import failed: " + e.message);
       }
     };
     reader.readAsText(file);
   }
 
-  // Wiring
-  el('q').addEventListener('input', (e)=>{ state.q = e.target.value.trim(); render(); });
-  el('sort').addEventListener('change', (e)=>{ state.sort = e.target.value; render(); });
+  function openAdmin(){
+    const saved = localStorage.getItem(DRAFT_STORAGE_KEY);
+    if(saved){
+      try{
+        const parsed = JSON.parse(saved);
+        if(parsed && Array.isArray(parsed.games)) state.draft = parsed;
+        else state.draft = JSON.parse(JSON.stringify({ games: state.all }));
+      }catch{
+        state.draft = JSON.parse(JSON.stringify({ games: state.all }));
+      }
+    }else{
+      state.draft = JSON.parse(JSON.stringify({ games: state.all }));
+    }
 
-  el('mClose').onclick = closeModal;
-  el('modalBack').onclick = (e)=>{ if(e.target.id === 'modalBack') closeModal(); };
-  window.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') { closeModal(); closeAdmin(); } });
+    refreshPick();
+    loadIntoForm(state.draft.games[0] || blankGame());
+    el("adminBack").classList.add("show");
+  }
 
-  el('adminBtn').onclick = openAdmin;
-  el('aClose').onclick = closeAdmin;
-  el('aSave').onclick = saveEntry;
-  el('aDelete').onclick = deleteEntry;
-  el('aDownload').onclick = downloadJSON;
-  el('aImport').addEventListener('change', (e)=>{ if(e.target.files[0]) importJSON(e.target.files[0]); });
+  function closeAdmin(){ el("adminBack").classList.remove("show"); }
 
-  el('aNew').onclick = ()=>{
-    loadIntoForm(blankGame());
+  // =========================
+  // WIRING
+  // =========================
+  el("q").addEventListener("input", (e)=>{ state.q = e.target.value.trim(); render(); });
+  el("sort").addEventListener("change", (e)=>{ state.sort = e.target.value; render(); });
+
+  el("mClose").onclick = closeModal;
+  el("modalBack").onclick = (e)=>{ if(e.target.id === "modalBack") closeModal(); };
+
+  window.addEventListener("keydown", (e)=>{
+    if(e.key === "Escape") { closeModal(); closeAdmin(); }
+  });
+
+  el("adminBtn").onclick = () => {
+    if(!requireAdminPin()) return;
+    openAdmin();
   };
 
-  // Suggestion button:
-  // If you use the issue template below, set this to your repo issues/new?template=game_suggestion.yml
-  // Example: https://github.com/USERNAME/REPO/issues/new?template=game_suggestion.yml
-  el('suggestBtn').onclick = ()=>{
-    const url = window.SUGGEST_URL || '';
+  el("aClose").onclick = closeAdmin;
+  el("aSave").onclick = saveEntry;
+  el("aDelete").onclick = deleteEntry;
+  el("aDownload").onclick = downloadJSON;
+  el("aImport").addEventListener("change", (e)=>{ if(e.target.files[0]) importJSON(e.target.files[0]); });
+
+  el("aNew").onclick = ()=>{
+    loadIntoForm(blankGame());
+    el("aId").value = ""; // allow fresh ID
+  };
+
+  el("aReId").onclick = ()=>{
+    const title = el("aTitle").value.trim();
+    if(!title){ alert("Enter a title first."); return; }
+    el("aId").value = slugify(title);
+    alert("ID regenerated. Saving now will use this ID.");
+  };
+
+  el("suggestBtn").onclick = ()=>{
+    const url = window.SUGGEST_URL || "";
     if(!url){
-      alert('Set SUGGEST_URL near the bottom of index.html (instructions in file).');
+      alert('Set SUGGEST_URL in the script (near the top).');
       return;
     }
-    window.open(url, '_blank', 'noopener,noreferrer');
+    window.open(url, "_blank", "noopener,noreferrer");
   };
 
+  // =========================
+  // INIT
+  // =========================
   async function init(){
-    const res = await fetch('games.json', {cache:'no-store'});
+    const res = await fetch("games.json", {cache:"no-store"});
     const data = await res.json();
+
     state.all = (data.games || []).map(g=>{
-      // normalize minimal safety
       return {
-        id: g.id || slugify(g.title||''),
-        title: g.title || '',
-        icon: g.icon || '🎲',
-        category: g.category || 'Physical',
+        id: g.id || slugify(g.title||""),
+        title: g.title || "",
+        icon: g.icon || "🎲",
+        category: g.category || "Physical",
         tags: (g.tags||[]).map(x=>String(x).toLowerCase()),
         keywords: (g.keywords||[]).map(x=>String(x).toLowerCase()),
-        ageRange: g.ageRange || '',
-        groupSize: g.groupSize || '',
-        timeMinutes: g.timeMinutes || '',
+        ageRange: g.ageRange || "",
+        groupSize: g.groupSize || "",
+        timeMinutes: g.timeMinutes || "",
         energy: (g.energy ?? 3),
         materials: g.materials || [],
-        setup: g.setup || '',
+        rules: g.rules || "",
+        setup: g.setup || "",
         howToPlay: g.howToPlay || [],
-        safetyNotes: g.safetyNotes || '',
-        leaderTips: g.leaderTips || '',
+        safetyNotes: g.safetyNotes || "",
+        leaderTips: g.leaderTips || "",
         photos: g.photos || [],
-        videoEmbedUrl: g.videoEmbedUrl || ''
+        videoEmbedUrl: g.videoEmbedUrl || ""
       };
     });
 
-    state.tags = computeTagCloud(state.all).filter(t=>{
-      // hide redundant category-like tags if you want; currently keep them
-      return true;
-    });
-
+    state.tags = computeTagCloud(state.all);
     renderChips();
     render();
   }
-
-  // IMPORTANT:
-  // Replace with your GitHub issues link AFTER you create the repo:
-  // window.SUGGEST_URL = "https://github.com/USERNAME/REPO/issues/new?template=game_suggestion.yml";
-  window.SUGGEST_URL = "";
 
   init();
 </script>
