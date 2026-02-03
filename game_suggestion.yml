@@ -1,0 +1,73 @@
+name: Game Suggestion
+description: Suggest a new game or improvements to an existing one
+title: "[Game Suggestion]: "
+labels: ["game-suggestion"]
+body:
+  - type: dropdown
+    id: suggestion_type
+    attributes:
+      label: What is this?
+      options:
+        - New game
+        - Improvement to an existing game
+    validations:
+      required: true
+
+  - type: input
+    id: game_title
+    attributes:
+      label: Game title
+      placeholder: "Example: Sardines"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      options:
+        - Physical
+        - Mental
+        - Event
+    validations:
+      required: true
+
+  - type: input
+    id: tags
+    attributes:
+      label: Tags (comma-separated)
+      placeholder: "indoor, active, teamwork"
+    validations:
+      required: false
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Rules / How to play
+      placeholder: "Write steps clearly…"
+    validations:
+      required: true
+
+  - type: textarea
+    id: materials
+    attributes:
+      label: Materials / setup
+      placeholder: "What do we need? How do we set it up?"
+    validations:
+      required: false
+
+  - type: textarea
+    id: safety
+    attributes:
+      label: Safety notes
+      placeholder: "Boundaries, hazards, any cautions"
+    validations:
+      required: false
+
+  - type: input
+    id: media_links
+    attributes:
+      label: Photo/video links (optional)
+      placeholder: "Paste links if you have them"
+    validations:
+      required: false
