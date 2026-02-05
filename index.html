@@ -469,45 +469,46 @@
 }
 
 /* =========================
-   EMBERS v2 (no banding)
+   EMBERS v3 (no seams)
    ========================= */
 #atmo .embers{
   position:absolute;
   inset:0;
   overflow:hidden;
-  opacity:.65;
-  mix-blend-mode: screen;
-  filter: blur(.2px);
+  pointer-events:none;
+  z-index: 1;
 }
 
-/* Each ember is a tiny dot with glow, repeated via gradients */
-#atmo .embers::before,
-#atmo .embers::after{
-  content:"";
+#atmo .ember{
   position:absolute;
-  inset:-20%;
-  background:
-    radial-gradient(circle, rgba(255,170,110,.85) 0 1px, transparent 2px) 0 0/120px 120px,
-    radial-gradient(circle, rgba(255,120,70,.75) 0 1px, transparent 2px) 40px 30px/160px 160px,
-    radial-gradient(circle, rgba(255,220,160,.55) 0 1px, transparent 2px) 10px 70px/200px 200px;
-  animation: embersDrift 16s linear infinite;
+  width:2px;
+  height:2px;
+  border-radius:999px;
+  background: rgba(255,170,110,.85);
+  box-shadow: 0 0 10px rgba(255,170,110,.35);
+  opacity: .0;
+  transform: translate3d(0,0,0);
+  animation: emberRise linear infinite;
+  will-change: transform, opacity;
+  mix-blend-mode: screen;
+  filter: blur(.15px);
 }
 
-/* Second layer: slower, bigger spacing */
-#atmo .embers::after{
-  opacity:.55;
-  filter: blur(.6px);
-  background:
-    radial-gradient(circle, rgba(255,170,110,.70) 0 1px, transparent 2px) 0 0/180px 180px,
-    radial-gradient(circle, rgba(255,120,70,.55) 0 1px, transparent 2px) 60px 50px/240px 240px,
-    radial-gradient(circle, rgba(255,220,160,.35) 0 1px, transparent 2px) 20px 110px/320px 320px;
-  animation-duration: 26s;
-  animation-delay: -9s;
+#atmo .ember.dim{
+  background: rgba(255,120,70,.65);
+  box-shadow: 0 0 9px rgba(255,120,70,.28);
 }
 
-@keyframes embersDrift{
-  from { transform: translate3d(0, 40vh, 0); }
-  to   { transform: translate3d(0, -120vh, 0); }
+#atmo .ember.bright{
+  background: rgba(255,220,160,.70);
+  box-shadow: 0 0 12px rgba(255,220,160,.25);
+}
+
+@keyframes emberRise{
+  0%   { transform: translate3d(0, 0, 0); opacity: 0; }
+  10%  { opacity: .75; }
+  80%  { opacity: .55; }
+  100% { transform: translate3d(0, -120vh, 0); opacity: 0; }
 }
 
   </style>
@@ -518,7 +519,7 @@
   <div id="atmo">
   <div class="fog f1"></div>
   <div class="fog f2"></div>
-  <div class="embers"></div>
+  <div class="embers" id="embers"></div>
   <div class="dither"></div>
 </div>
 
