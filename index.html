@@ -46,25 +46,45 @@
 
     /* ========= ATMOSPHERE: FOG ========= */
     .fogLayer{
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-      opacity: .55;
-      filter: blur(10px);
-      background:
-        radial-gradient(900px 420px at 10% 80%, rgba(255,255,255,.10), transparent 60%),
-        radial-gradient(800px 380px at 70% 20%, rgba(255,255,255,.08), transparent 60%),
-        radial-gradient(700px 340px at 90% 85%, rgba(255,255,255,.09), transparent 65%),
-        radial-gradient(900px 400px at 30% 40%, rgba(255,255,255,.06), transparent 60%);
-      animation: fogDrift 28s ease-in-out infinite alternate;
-      mix-blend-mode: screen;
-    }
-    .fogLayer.two{
-      opacity: .35;
-      filter: blur(16px);
-      animation-duration: 44s;
-    }
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+
+  /* cooler, neutral fog */
+  opacity: .22;
+  filter: blur(18px);
+
+  /* multiple soft blobs, not harsh gradients */
+  background:
+    radial-gradient(900px 520px at 10% 80%, rgba(220,230,255,.10), transparent 70%),
+    radial-gradient(800px 480px at 70% 20%, rgba(220,230,255,.08), transparent 72%),
+    radial-gradient(700px 440px at 90% 85%, rgba(220,230,255,.09), transparent 75%),
+    radial-gradient(900px 520px at 30% 40%, rgba(220,230,255,.06), transparent 72%);
+
+  animation: fogDrift 36s ease-in-out infinite alternate;
+  mix-blend-mode: normal;
+}
+
+.noise{
+  position: fixed;
+  inset: 0;
+  z-index: 2;           /* above fog+embers, below UI */
+  pointer-events: none;
+  opacity: .08;
+
+  /* noise made from repeating gradients */
+  background-image:
+    repeating-linear-gradient(0deg, rgba(255,255,255,.06) 0 1px, transparent 1px 2px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.04) 0 1px, transparent 1px 3px);
+  mix-blend-mode: overlay;
+}
+
+.fogLayer.two{
+  opacity: .14;
+  filter: blur(26px);
+  animation-duration: 58s;
+}
     @keyframes fogDrift{
       0%   { transform: translate3d(-3%, 1%, 0) scale(1.03); }
       50%  { transform: translate3d(2%, -2%, 0) scale(1.05); }
@@ -401,6 +421,7 @@
   <!-- Atmosphere layers -->
   <div class="fogLayer"></div>
   <div class="fogLayer two"></div>
+  <div class="noise"></div>
   <div class="embers"></div>
 
   <header>
