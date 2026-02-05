@@ -1348,6 +1348,52 @@
       render();
     }
 
+    // =========================
+// EMBERS v3 (particle DOM)
+// =========================
+(function spawnEmbers(){
+  const holder = document.getElementById("embers");
+  if(!holder) return;
+
+  // Clear any previous particles
+  holder.innerHTML = "";
+
+  const COUNT = 55; // raise/lower as you want
+  const rand = (a,b)=>a + Math.random()*(b-a);
+
+  for(let i=0;i<COUNT;i++){
+    const e = document.createElement("span");
+    e.className = "ember";
+
+    // variety
+    const r = Math.random();
+    if(r < 0.33) e.classList.add("dim");
+    else if(r > 0.78) e.classList.add("bright");
+
+    const left = rand(0, 100);
+    const startY = rand(60, 120);      // start below the fold
+    const dur = rand(8, 18);
+    const delay = rand(0, dur);        // stagger
+    const drift = rand(-40, 40);       // horizontal drift
+    const size = rand(1.5, 3.2);
+
+    e.style.left = left + "vw";
+    e.style.bottom = (-startY) + "vh"; // below screen
+    e.style.width = size + "px";
+    e.style.height = size + "px";
+    e.style.animationDuration = dur + "s";
+    e.style.animationDelay = (-delay) + "s";
+
+    // apply drift using a CSS variable via translateX on parent wrapper
+    // easiest: just offset left a bit over time by adding small random translateX in keyframes? (keep simple)
+    // We'll fake drift by nudging left start:
+    e.style.marginLeft = drift + "px";
+
+    holder.appendChild(e);
+  }
+})();
+
+
     init();
   </script>
 </body>
