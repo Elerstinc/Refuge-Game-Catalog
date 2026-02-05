@@ -7,7 +7,6 @@
 
   <style>
     :root{
-      --bg:#0b0f17;
       --panel: rgba(15,23,36,0.85);
       --panel2: rgba(17,26,39,0.90);
       --stroke:rgba(255,255,255,.08);
@@ -22,7 +21,6 @@
 
     *{box-sizing:border-box}
     html,body{height:100%}
-
     body{
       margin:0;
       color:var(--text);
@@ -31,7 +29,7 @@
       /* Cinematic background */
       background:
         linear-gradient(rgba(0,0,0,0.72), rgba(0,0,0,0.72)),
-        url("https://github.com/Elerstinc/Refuge-Game-Catalog/blob/main/refuge-survivor-bg.png?raw=true") center center / cover no-repeat fixed;
+        url("media/backgrounds/refuge-survivor-bg.png") center center / cover no-repeat fixed;
 
       min-height:100vh;
     }
@@ -44,60 +42,85 @@
       z-index: 5;
     }
 
-    /* ========= ATMOSPHERE: FOG ========= */
-    .fogLayer{
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-
-  /* cooler, neutral fog */
-  opacity: .22;
-  filter: blur(18px);
-
-  /* multiple soft blobs, not harsh gradients */
-  background:
-    radial-gradient(900px 520px at 10% 80%, rgba(220,230,255,.10), transparent 70%),
-    radial-gradient(800px 480px at 70% 20%, rgba(220,230,255,.08), transparent 72%),
-    radial-gradient(700px 440px at 90% 85%, rgba(220,230,255,.09), transparent 75%),
-    radial-gradient(900px 520px at 30% 40%, rgba(220,230,255,.06), transparent 72%);
-
-  animation: fogDrift 36s ease-in-out infinite alternate;
-  mix-blend-mode: normal;
-}
-
-.noise{
-  position: fixed;
-  inset: 0;
-  z-index: 2;           /* above fog+embers, below UI */
-  pointer-events: none;
-  opacity: .08;
-
-  /* noise made from repeating gradients */
-  background-image:
-    repeating-linear-gradient(0deg, rgba(255,255,255,.06) 0 1px, transparent 1px 2px),
-    repeating-linear-gradient(90deg, rgba(255,255,255,.04) 0 1px, transparent 1px 3px);
-  mix-blend-mode: overlay;
-}
-
-.fogLayer.two{
-  opacity: .14;
-  filter: blur(26px);
-  animation-duration: 58s;
-}
-    @keyframes fogDrift{
-      0%   { transform: translate3d(-3%, 1%, 0) scale(1.03); }
-      50%  { transform: translate3d(2%, -2%, 0) scale(1.05); }
-      100% { transform: translate3d(4%, 2%, 0) scale(1.07); }
+    /* =========================
+       ATMOSPHERE: bottom fog + embers
+       ========================= */
+    #atmo{
+      position: fixed;
+      inset: 0;
+      z-index: 1;         /* below UI */
+      pointer-events: none;
+      transform: translateZ(0);
     }
 
-    /* Respect reduced motion */
+    /* Bottom fog (scrolls L -> R) */
+    #atmo .fog{
+      position:absolute;
+      left:0; right:0; bottom:0;
+      height: 38vh;
+      opacity: .18;
+      filter: blur(18px);
+      mix-blend-mode: normal;
+
+      background:
+        radial-gradient(220px 120px at 10% 70%, rgba(220,235,255,.14), transparent 70%),
+        radial-gradient(260px 140px at 30% 85%, rgba(220,235,255,.10), transparent 72%),
+        radial-gradient(240px 140px at 55% 75%, rgba(220,235,255,.12), transparent 70%),
+        radial-gradient(260px 150px at 80% 88%, rgba(220,235,255,.10), transparent 74%);
+
+      background-size: 520px 260px;
+      background-repeat: repeat;
+      animation: fogScroll 22s linear infinite;
+    }
+    #atmo .fog.f2{
+      height: 44vh;
+      opacity: .10;
+      filter: blur(28px);
+      animation-duration: 36s;
+    }
+    @keyframes fogScroll{
+      from { background-position: 0 0; }
+      to   { background-position: 520px 0; }
+    }
+
+    /* Embers (DOM particles, no seams) */
+    #atmo .embers{ position:absolute; inset:0; overflow:hidden; }
+    #atmo .ember{
+      position:absolute;
+      width:2px; height:2px;
+      border-radius:999px;
+      background: rgba(255,170,110,.85);
+      box-shadow: 0 0 10px rgba(255,170,110,.35);
+      opacity: 0;
+      animation: emberRise linear infinite;
+      will-change: transform, opacity;
+      mix-blend-mode: screen;
+      filter: blur(.15px);
+    }
+    #atmo .ember.dim{
+      background: rgba(255,120,70,.65);
+      box-shadow: 0 0 9px rgba(255,120,70,.28);
+    }
+    #atmo .ember.bright{
+      background: rgba(255,220,160,.70);
+      box-shadow: 0 0 12px rgba(255,220,160,.25);
+    }
+    @keyframes emberRise{
+      0%   { transform: translate3d(0, 0, 0); opacity: 0; }
+      10%  { opacity: .75; }
+      80%  { opacity: .55; }
+      100% { transform: translate3d(0, -120vh, 0); opacity: 0; }
+    }
+
     @media (prefers-reduced-motion: reduce){
-      .fogLayer, .embers::before, .embers::after{ animation: none !important; }
+      #atmo .fog{ animation: none !important; }
+      #atmo .ember{ animation: none !important; opacity:.15; }
       .card{ transition:none !important; }
     }
 
-    /* ========= HEADER ========= */
+    /* =========================
+       HEADER
+       ========================= */
     header{
       position:sticky; top:0;
       backdrop-filter: blur(10px);
@@ -110,7 +133,15 @@
     .row{display:flex; gap:12px; flex-wrap:wrap; align-items:center; justify-content:space-between}
 
     .title{display:flex; gap:10px; align-items:center}
-    .logo{
+    #siteLogo{
+      width:40px; height:40px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      object-fit:cover;
+      display:none; /* shown if configured */
+      box-shadow: var(--shadow);
+    }
+    .logoFallback{
       width:40px; height:40px; border-radius:14px;
       background: linear-gradient(135deg, rgba(122,162,255,.35), rgba(57,217,138,.18));
       border:1px solid var(--stroke);
@@ -160,7 +191,9 @@
     .chip.on{background: var(--chip2); color: var(--text); border-color: rgba(122,162,255,.25)}
     .meta{color:var(--muted); font-size:13px; margin:10px 0 0}
 
-    /* ========= GRID / CARDS ========= */
+    /* =========================
+       GRID / CARDS
+       ========================= */
     main{padding:18px 0 30px}
     .grid{
       margin-top:16px;
@@ -188,7 +221,7 @@
       backdrop-filter: blur(6px);
     }
 
-    /* Glow layer */
+    /* Hover glow */
     .card::before{
       content:"";
       position:absolute;
@@ -200,8 +233,6 @@
       transition: opacity .18s ease;
       pointer-events:none;
     }
-
-    /* Edge sheen */
     .card::after{
       content:"";
       position:absolute;
@@ -210,7 +241,6 @@
       box-shadow: 0 0 0 1px rgba(255,255,255,.06) inset;
       pointer-events:none;
     }
-
     .card:hover{
       transform: translateY(-2px);
       border-color: rgba(122,162,255,.35);
@@ -237,7 +267,9 @@
       background: rgba(255,255,255,.03);
     }
 
-    /* ========= MODAL ========= */
+    /* =========================
+       MODAL
+       ========================= */
     .modalBack{
       position:fixed; inset:0; z-index:50;
       background: rgba(0,0,0,.58);
@@ -298,7 +330,9 @@
     #mRules li{ margin:6px 0; }
     #mRules strong{ color: var(--text); font-weight:800; }
 
-    /* ========= ADMIN ========= */
+    /* =========================
+       ADMIN
+       ========================= */
     .adminBack{
       position:fixed; inset:0; z-index:60;
       background: rgba(0,0,0,.62);
@@ -330,7 +364,7 @@
     }
     .adminBody{
       padding:16px;
-      overflow:auto;
+      overflow:auto; /* scrollable admin */
       flex: 1 1 auto;
     }
 
@@ -341,194 +375,23 @@
     textarea{min-height:90px; resize:vertical}
     .hint{font-size:12px; color:var(--muted); margin-top:8px}
     code{color:rgba(233,238,247,.9)}
-
-    /* =========================
-   ATMOSPHERE OVERRIDE PACK
-   Paste at END of <style>
-   ========================= */
-
-/* Container */
-#atmo{
-  position: fixed;
-  inset: 0;
-  z-index: 1;          /* below UI, above background */
-  pointer-events: none;
-}
-
-/* Neutral fog (no orange tint) */
-#atmo .fog{
-  position: absolute;
-  inset: -15%;
-  opacity: .18;
-  filter: blur(28px);
-  mix-blend-mode: normal;   /* IMPORTANT: prevents color pickup */
-  animation: fogFloat 42s ease-in-out infinite alternate;
-  background:
-    radial-gradient(900px 560px at 10% 80%, rgba(220,235,255,.10), transparent 72%),
-    radial-gradient(820px 500px at 70% 20%, rgba(220,235,255,.08), transparent 74%),
-    radial-gradient(760px 480px at 90% 85%, rgba(220,235,255,.09), transparent 76%),
-    radial-gradient(980px 620px at 30% 40%, rgba(220,235,255,.06), transparent 74%);
-}
-
-/* second fog layer: slower + softer */
-#atmo .fog.f2{
-  opacity: .12;
-  filter: blur(40px);
-  animation-duration: 68s;
-}
-
-/* keep fog mostly low */
-#atmo .fog{
-  mask-image: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,.9) 40%, rgba(0,0,0,0) 85%);
-  -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,.9) 40%, rgba(0,0,0,0) 85%);
-}
-
-/* embers: lots of tiny glowing dots rising */
-#atmo .embers{
-  position:absolute;
-  inset:0;
-  opacity:.55;
-  mix-blend-mode: screen;
-}
-
-#atmo .embers::before,
-#atmo .embers::after{
-  content:"";
-  position:absolute;
-  left:-10%;
-  top:110%;
-  width:120%;
-  height:140%;
-  animation: embersUp 14s linear infinite;
-  background: transparent;
-}
-
-/* ember field 1 */
-#atmo .embers::before{
-  box-shadow:
-    6vw  0vh 0 0 rgba(255,140,80,.45),
-    12vw -8vh 0 0 rgba(255,210,140,.25),
-    18vw -4vh 0 0 rgba(255,140,80,.35),
-    25vw -12vh 0 0 rgba(255,210,140,.20),
-    33vw -2vh 0 0 rgba(255,140,80,.40),
-    41vw -10vh 0 0 rgba(255,210,140,.18),
-    49vw -6vh 0 0 rgba(255,140,80,.35),
-    56vw -14vh 0 0 rgba(255,210,140,.16),
-    63vw -3vh 0 0 rgba(255,140,80,.38),
-    71vw -12vh 0 0 rgba(255,210,140,.14),
-    78vw -7vh 0 0 rgba(255,140,80,.30),
-    86vw -16vh 0 0 rgba(255,210,140,.12),
-    93vw -9vh 0 0 rgba(255,140,80,.28);
-  animation-duration: 14s;
-}
-
-/* ember field 2 (offset + slower) */
-#atmo .embers::after{
-  opacity:.6;
-  filter: blur(.6px);
-  box-shadow:
-    9vw  -10vh 0 0 rgba(255,210,140,.18),
-    16vw -18vh 0 0 rgba(255,140,80,.28),
-    28vw -14vh 0 0 rgba(255,210,140,.14),
-    36vw -22vh 0 0 rgba(255,140,80,.22),
-    47vw -18vh 0 0 rgba(255,210,140,.12),
-    58vw -26vh 0 0 rgba(255,140,80,.18),
-    69vw -20vh 0 0 rgba(255,210,140,.10),
-    81vw -30vh 0 0 rgba(255,140,80,.14),
-    92vw -24vh 0 0 rgba(255,210,140,.08);
-  animation-duration: 22s;
-  animation-delay: -7s;
-}
-
-/* dither layer: kills banding/pixel look */
-#atmo .dither{
-  position:absolute;
-  inset:0;
-  opacity:.10;
-  mix-blend-mode: overlay;
-  background-image:
-    repeating-linear-gradient(0deg, rgba(255,255,255,.06) 0 1px, transparent 1px 2px),
-    repeating-linear-gradient(90deg, rgba(255,255,255,.04) 0 1px, transparent 1px 3px);
-}
-
-/* motion */
-@keyframes fogFloat{
-  0%   { transform: translate3d(-2%, 2%, 0) scale(1.03); }
-  50%  { transform: translate3d(2%, -1%, 0) scale(1.06); }
-  100% { transform: translate3d(3%, 2%, 0) scale(1.08); }
-}
-
-@keyframes embersUp{
-  0%   { transform: translate3d(0,0,0); }
-  100% { transform: translate3d(0,-160vh,0); }
-}
-
-/* if user prefers reduced motion */
-@media (prefers-reduced-motion: reduce){
-  #atmo .fog, #atmo .embers::before, #atmo .embers::after{ animation: none !important; }
-}
-
-/* =========================
-   EMBERS v3 (no seams)
-   ========================= */
-#atmo .embers{
-  position:absolute;
-  inset:0;
-  overflow:hidden;
-  pointer-events:none;
-  z-index: 1;
-}
-
-#atmo .ember{
-  position:absolute;
-  width:2px;
-  height:2px;
-  border-radius:999px;
-  background: rgba(255,170,110,.85);
-  box-shadow: 0 0 10px rgba(255,170,110,.35);
-  opacity: .0;
-  transform: translate3d(0,0,0);
-  animation: emberRise linear infinite;
-  will-change: transform, opacity;
-  mix-blend-mode: screen;
-  filter: blur(.15px);
-}
-
-#atmo .ember.dim{
-  background: rgba(255,120,70,.65);
-  box-shadow: 0 0 9px rgba(255,120,70,.28);
-}
-
-#atmo .ember.bright{
-  background: rgba(255,220,160,.70);
-  box-shadow: 0 0 12px rgba(255,220,160,.25);
-}
-
-@keyframes emberRise{
-  0%   { transform: translate3d(0, 0, 0); opacity: 0; }
-  10%  { opacity: .75; }
-  80%  { opacity: .55; }
-  100% { transform: translate3d(0, -120vh, 0); opacity: 0; }
-}
-
   </style>
 </head>
 
 <body>
   <!-- Atmosphere layers -->
-  <div id="atmo">
-  <div class="fog f1"></div>
-  <div class="fog f2"></div>
-  <div class="embers" id="embers"></div>
-  <div class="dither"></div>
-</div>
-
+  <div id="atmo" aria-hidden="true">
+    <div class="fog f1"></div>
+    <div class="fog f2"></div>
+    <div class="embers" id="embers"></div>
+  </div>
 
   <header>
     <div class="wrap">
       <div class="row">
         <div class="title">
-          <div class="logo">R</div>
+          <img id="siteLogo" alt="Logo" />
+          <div class="logoFallback" id="logoFallback">R</div>
           <div>
             <h1>Refuge Game Catalog</h1>
             <div class="sub">Search. Filter. Deploy fun.</div>
@@ -756,14 +619,29 @@
     // =========================
     // CONFIG
     // =========================
-    const ADMIN_PIN = "2468";
-    const ADMIN_SESSION_KEY = "refuge_admin_unlocked";
-    const DRAFT_STORAGE_KEY = "refuge_games_draft_v1";
+    const CONFIG = {
+      ADMIN_PIN: "2468",
+      ADMIN_SESSION_KEY: "refuge_admin_unlocked",
+      DRAFT_STORAGE_KEY: "refuge_games_draft_v1",
 
-    // ✅ Set this to your issue form URL (you already discovered the correct repo)
-    // Example:
-    // "https://github.com/Elerstinc/Refuge-Game-Catalog/issues/new?template=game_suggestion.yml"
-    window.SUGGEST_URL = "https://github.com/Elerstinc/Refuge-Game-Catalog/issues/new?template=game_suggestion.yml";
+      // Suggestions issue form
+      SUGGEST_URL: "https://github.com/Elerstinc/Refuge-Game-Catalog/issues/new?template=game_suggestion.yml",
+
+      // Logo (set to "" to disable)
+      LOGO_SRC: "media/logo.png",
+
+      // Audio files
+      AUDIO: {
+        hover: "media/audio/hover.mp3",
+        click: "media/audio/click.mp3",
+        music: "media/audio/music.mp3",
+        sfxVolume: 0.55,
+        musicVolume: 0.35
+      },
+
+      // Ember tuning
+      EMBERS: { count: 60, minDur: 8, maxDur: 18 }
+    };
 
     // =========================
     // HELPERS
@@ -798,7 +676,7 @@
         .replace(/'/g,"&#039;");
     }
 
-    // Supports:
+    // Mini-markdown for Rules:
     // - Bullets: "- " or "* "
     // - Bold: **text**
     // - Paragraphs / blank lines
@@ -842,9 +720,130 @@
       if(!q) return true;
       const s = q.toLowerCase();
       const fields = [
-        g.title, g.category, (g.tags||[]).join(" "), (g.keywords||[]).join(" "), g.rules
+        g.title, g.category,
+        (g.tags||[]).join(" "),
+        (g.keywords||[]).join(" "),
+        g.rules
       ].join(" ").toLowerCase();
       return fields.includes(s);
+    }
+
+    // =========================
+    // AUDIO SYSTEM
+    // =========================
+    const audio = {
+      hover: null,
+      click: null,
+      music: null,
+      armed: false,
+      lastHoverAt: 0
+    };
+
+    function makeAudio(src, loop=false, volume=0.5){
+      const a = new Audio(src);
+      a.preload = "auto";
+      a.loop = loop;
+      a.volume = volume;
+      return a;
+    }
+
+    function initAudio(){
+      // Create objects (won’t play until user gesture)
+      audio.hover = makeAudio(CONFIG.AUDIO.hover, false, CONFIG.AUDIO.sfxVolume);
+      audio.click = makeAudio(CONFIG.AUDIO.click, false, CONFIG.AUDIO.sfxVolume);
+      audio.music = makeAudio(CONFIG.AUDIO.music, true, CONFIG.AUDIO.musicVolume);
+    }
+
+    function armAudioOnce(){
+      if(audio.armed) return;
+      audio.armed = true;
+
+      // Attempt to start music after first interaction
+      audio.music.play().catch(()=>{ /* browser blocked; next gesture will succeed */ });
+
+      window.removeEventListener("pointerdown", armAudioOnce);
+      window.removeEventListener("keydown", armAudioOnce);
+    }
+
+    function playSfx(which){
+      if(!audio.armed) return; // prevents annoying auto attempts
+      const a = audio[which];
+      if(!a) return;
+      try{
+        a.currentTime = 0;
+        a.play().catch(()=>{});
+      }catch{}
+    }
+
+    function playHoverSfxThrottled(){
+      const now = Date.now();
+      if(now - audio.lastHoverAt < 140) return; // throttle
+      audio.lastHoverAt = now;
+      playSfx("hover");
+    }
+
+    // =========================
+    // EMBERS (DOM particles, stable)
+    // =========================
+    function spawnEmbers(){
+      const holder = el("embers");
+      if(!holder) return;
+      holder.innerHTML = "";
+
+      const COUNT = CONFIG.EMBERS.count;
+      const rand = (a,b)=>a + Math.random()*(b-a);
+
+      for(let i=0;i<COUNT;i++){
+        const p = document.createElement("span");
+        p.className = "ember";
+
+        const r = Math.random();
+        if(r < 0.33) p.classList.add("dim");
+        else if(r > 0.78) p.classList.add("bright");
+
+        const left = rand(0, 100);
+        const startY = rand(0, 30);     // start near bottom
+        const dur = rand(CONFIG.EMBERS.minDur, CONFIG.EMBERS.maxDur);
+        const delay = rand(0, dur);
+        const drift = rand(-30, 30);
+        const size = rand(1.5, 3.2);
+
+        p.style.left = left + "vw";
+        p.style.bottom = (-startY) + "vh";
+        p.style.width = size + "px";
+        p.style.height = size + "px";
+        p.style.animationDuration = dur + "s";
+        p.style.animationDelay = (-delay) + "s";
+        p.style.marginLeft = drift + "px";
+
+        holder.appendChild(p);
+      }
+    }
+
+    // =========================
+    // LOGO
+    // =========================
+    function initLogo(){
+      const img = el("siteLogo");
+      const fallback = el("logoFallback");
+      if(!img || !fallback) return;
+
+      const src = (CONFIG.LOGO_SRC || "").trim();
+      if(!src){
+        img.style.display = "none";
+        fallback.style.display = "grid";
+        return;
+      }
+
+      img.src = src;
+      img.onload = ()=>{
+        img.style.display = "block";
+        fallback.style.display = "none";
+      };
+      img.onerror = ()=>{
+        img.style.display = "none";
+        fallback.style.display = "grid";
+      };
     }
 
     // =========================
@@ -919,7 +918,17 @@
     function card(g){
       const d = document.createElement("div");
       d.className = "card";
-      d.onclick = ()=>openModal(g);
+
+      // Hover sound
+      d.addEventListener("pointerenter", ()=>{
+        playHoverSfxThrottled();
+      });
+
+      // Click sound + open modal
+      d.addEventListener("click", ()=>{
+        playSfx("click");
+        openModal(g);
+      });
 
       const top = document.createElement("div");
       top.className = "cardTop";
@@ -1064,13 +1073,12 @@
     // ADMIN PIN
     // =========================
     function requireAdminPin(){
-      if (sessionStorage.getItem(ADMIN_SESSION_KEY) === "1") return true;
-
+      if (sessionStorage.getItem(CONFIG.ADMIN_SESSION_KEY) === "1") return true;
       const entered = prompt("Enter admin PIN:");
       if (entered === null) return false;
 
-      if (String(entered).trim() === ADMIN_PIN){
-        sessionStorage.setItem(ADMIN_SESSION_KEY, "1");
+      if (String(entered).trim() === CONFIG.ADMIN_PIN){
+        sessionStorage.setItem(CONFIG.ADMIN_SESSION_KEY, "1");
         return true;
       }
       alert("Incorrect PIN.");
@@ -1181,7 +1189,7 @@
       if(idx >= 0) state.draft.games[idx] = g;
       else state.draft.games.push(g);
 
-      localStorage.setItem(DRAFT_STORAGE_KEY, JSON.stringify({ games: state.draft.games }));
+      localStorage.setItem(CONFIG.DRAFT_STORAGE_KEY, JSON.stringify({ games: state.draft.games }));
 
       // LIVE PREVIEW update
       state.all = JSON.parse(JSON.stringify(state.draft.games));
@@ -1202,7 +1210,7 @@
       if(!confirm(`Delete "${g.title}"?`)) return;
 
       state.draft.games.splice(idx, 1);
-      localStorage.setItem(DRAFT_STORAGE_KEY, JSON.stringify({ games: state.draft.games }));
+      localStorage.setItem(CONFIG.DRAFT_STORAGE_KEY, JSON.stringify({ games: state.draft.games }));
 
       state.all = JSON.parse(JSON.stringify(state.draft.games));
       state.tags = computeTagCloud(state.all);
@@ -1230,7 +1238,7 @@
           const data = JSON.parse(reader.result);
           if(!data || !Array.isArray(data.games)) throw new Error("Invalid format");
           state.draft = data;
-          localStorage.setItem(DRAFT_STORAGE_KEY, JSON.stringify({ games: state.draft.games }));
+          localStorage.setItem(CONFIG.DRAFT_STORAGE_KEY, JSON.stringify({ games: state.draft.games }));
 
           state.all = JSON.parse(JSON.stringify(state.draft.games));
           state.tags = computeTagCloud(state.all);
@@ -1248,7 +1256,7 @@
     }
 
     function openAdmin(){
-      const saved = localStorage.getItem(DRAFT_STORAGE_KEY);
+      const saved = localStorage.getItem(CONFIG.DRAFT_STORAGE_KEY);
       if(saved){
         try{
           const parsed = JSON.parse(saved);
@@ -1305,7 +1313,7 @@
     };
 
     el("suggestBtn").onclick = ()=>{
-      const url = window.SUGGEST_URL || "";
+      const url = (CONFIG.SUGGEST_URL || "").trim();
       if(!url){
         alert("Set SUGGEST_URL in the script (near the top).");
         return;
@@ -1313,10 +1321,18 @@
       window.open(url, "_blank", "noopener,noreferrer");
     };
 
+    // Arm audio on first interaction (required by browsers)
+    window.addEventListener("pointerdown", armAudioOnce, {once:false});
+    window.addEventListener("keydown", armAudioOnce, {once:false});
+
     // =========================
     // INIT
     // =========================
     async function init(){
+      initAudio();
+      initLogo();
+      spawnEmbers();
+
       const res = await fetch("games.json", {cache:"no-store"});
       const data = await res.json();
 
@@ -1347,52 +1363,6 @@
       renderChips();
       render();
     }
-
-    // =========================
-// EMBERS v3 (particle DOM)
-// =========================
-(function spawnEmbers(){
-  const holder = document.getElementById("embers");
-  if(!holder) return;
-
-  // Clear any previous particles
-  holder.innerHTML = "";
-
-  const COUNT = 55; // raise/lower as you want
-  const rand = (a,b)=>a + Math.random()*(b-a);
-
-  for(let i=0;i<COUNT;i++){
-    const e = document.createElement("span");
-    e.className = "ember";
-
-    // variety
-    const r = Math.random();
-    if(r < 0.33) e.classList.add("dim");
-    else if(r > 0.78) e.classList.add("bright");
-
-    const left = rand(0, 100);
-    const startY = rand(60, 120);      // start below the fold
-    const dur = rand(8, 18);
-    const delay = rand(0, dur);        // stagger
-    const drift = rand(-40, 40);       // horizontal drift
-    const size = rand(1.5, 3.2);
-
-    e.style.left = left + "vw";
-    e.style.bottom = (-startY) + "vh"; // below screen
-    e.style.width = size + "px";
-    e.style.height = size + "px";
-    e.style.animationDuration = dur + "s";
-    e.style.animationDelay = (-delay) + "s";
-
-    // apply drift using a CSS variable via translateX on parent wrapper
-    // easiest: just offset left a bit over time by adding small random translateX in keyframes? (keep simple)
-    // We'll fake drift by nudging left start:
-    e.style.marginLeft = drift + "px";
-
-    holder.appendChild(e);
-  }
-})();
-
 
     init();
   </script>
