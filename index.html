@@ -414,15 +414,144 @@
     textarea{min-height:90px; resize:vertical}
     .hint{font-size:12px; color:var(--muted); margin-top:8px}
     code{color:rgba(233,238,247,.9)}
+
+    /* =========================
+   ATMOSPHERE OVERRIDE PACK
+   Paste at END of <style>
+   ========================= */
+
+/* Container */
+#atmo{
+  position: fixed;
+  inset: 0;
+  z-index: 1;          /* below UI, above background */
+  pointer-events: none;
+}
+
+/* Neutral fog (no orange tint) */
+#atmo .fog{
+  position: absolute;
+  inset: -15%;
+  opacity: .18;
+  filter: blur(28px);
+  mix-blend-mode: normal;   /* IMPORTANT: prevents color pickup */
+  animation: fogFloat 42s ease-in-out infinite alternate;
+  background:
+    radial-gradient(900px 560px at 10% 80%, rgba(220,235,255,.10), transparent 72%),
+    radial-gradient(820px 500px at 70% 20%, rgba(220,235,255,.08), transparent 74%),
+    radial-gradient(760px 480px at 90% 85%, rgba(220,235,255,.09), transparent 76%),
+    radial-gradient(980px 620px at 30% 40%, rgba(220,235,255,.06), transparent 74%);
+}
+
+/* second fog layer: slower + softer */
+#atmo .fog.f2{
+  opacity: .12;
+  filter: blur(40px);
+  animation-duration: 68s;
+}
+
+/* keep fog mostly low */
+#atmo .fog{
+  mask-image: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,.9) 40%, rgba(0,0,0,0) 85%);
+  -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,.9) 40%, rgba(0,0,0,0) 85%);
+}
+
+/* embers: lots of tiny glowing dots rising */
+#atmo .embers{
+  position:absolute;
+  inset:0;
+  opacity:.55;
+  mix-blend-mode: screen;
+}
+
+#atmo .embers::before,
+#atmo .embers::after{
+  content:"";
+  position:absolute;
+  left:-10%;
+  top:110%;
+  width:120%;
+  height:140%;
+  animation: embersUp 14s linear infinite;
+  background: transparent;
+}
+
+/* ember field 1 */
+#atmo .embers::before{
+  box-shadow:
+    6vw  0vh 0 0 rgba(255,140,80,.45),
+    12vw -8vh 0 0 rgba(255,210,140,.25),
+    18vw -4vh 0 0 rgba(255,140,80,.35),
+    25vw -12vh 0 0 rgba(255,210,140,.20),
+    33vw -2vh 0 0 rgba(255,140,80,.40),
+    41vw -10vh 0 0 rgba(255,210,140,.18),
+    49vw -6vh 0 0 rgba(255,140,80,.35),
+    56vw -14vh 0 0 rgba(255,210,140,.16),
+    63vw -3vh 0 0 rgba(255,140,80,.38),
+    71vw -12vh 0 0 rgba(255,210,140,.14),
+    78vw -7vh 0 0 rgba(255,140,80,.30),
+    86vw -16vh 0 0 rgba(255,210,140,.12),
+    93vw -9vh 0 0 rgba(255,140,80,.28);
+  animation-duration: 14s;
+}
+
+/* ember field 2 (offset + slower) */
+#atmo .embers::after{
+  opacity:.6;
+  filter: blur(.6px);
+  box-shadow:
+    9vw  -10vh 0 0 rgba(255,210,140,.18),
+    16vw -18vh 0 0 rgba(255,140,80,.28),
+    28vw -14vh 0 0 rgba(255,210,140,.14),
+    36vw -22vh 0 0 rgba(255,140,80,.22),
+    47vw -18vh 0 0 rgba(255,210,140,.12),
+    58vw -26vh 0 0 rgba(255,140,80,.18),
+    69vw -20vh 0 0 rgba(255,210,140,.10),
+    81vw -30vh 0 0 rgba(255,140,80,.14),
+    92vw -24vh 0 0 rgba(255,210,140,.08);
+  animation-duration: 22s;
+  animation-delay: -7s;
+}
+
+/* dither layer: kills banding/pixel look */
+#atmo .dither{
+  position:absolute;
+  inset:0;
+  opacity:.10;
+  mix-blend-mode: overlay;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(255,255,255,.06) 0 1px, transparent 1px 2px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.04) 0 1px, transparent 1px 3px);
+}
+
+/* motion */
+@keyframes fogFloat{
+  0%   { transform: translate3d(-2%, 2%, 0) scale(1.03); }
+  50%  { transform: translate3d(2%, -1%, 0) scale(1.06); }
+  100% { transform: translate3d(3%, 2%, 0) scale(1.08); }
+}
+
+@keyframes embersUp{
+  0%   { transform: translate3d(0,0,0); }
+  100% { transform: translate3d(0,-160vh,0); }
+}
+
+/* if user prefers reduced motion */
+@media (prefers-reduced-motion: reduce){
+  #atmo .fog, #atmo .embers::before, #atmo .embers::after{ animation: none !important; }
+}
   </style>
 </head>
 
 <body>
   <!-- Atmosphere layers -->
-  <div class="fogLayer"></div>
-  <div class="fogLayer two"></div>
-  <div class="noise"></div>
+  <div id="atmo">
+  <div class="fog f1"></div>
+  <div class="fog f2"></div>
   <div class="embers"></div>
+  <div class="dither"></div>
+</div>
+
 
   <header>
     <div class="wrap">
