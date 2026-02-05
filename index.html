@@ -6,19 +6,33 @@
   <title>Refuge Youth Game Catalog</title>
   <style>
     :root{
-      --bg:#0b0f17; --panel:#0f1724; --panel2:#111a27; --stroke:rgba(255,255,255,.08);
+      --bg:#0b0f17; --panel: rgba(15,23,36,0.85); --panel2:#111a27; --stroke:rgba(255,255,255,.08);
       --text:#e9eef7; --muted:#a9b6cb; --brand:#7aa2ff; --chip:#1b2a43; --chip2:#233657;
       --shadow:0 14px 50px rgba(0,0,0,.40); --r:18px;
     }
     *{box-sizing:border-box}
     body{
-      margin:0; color:var(--text);
-      font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      background:
-        radial-gradient(1100px 700px at 20% 0%, rgba(122,162,255,.18), transparent 60%),
-        radial-gradient(900px 600px at 90% 20%, rgba(57,217,138,.10), transparent 55%),
-        var(--bg);
-    }
+  margin:0;
+  color:var(--text);
+  font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+
+  /* Cinematic background */
+  background:
+    linear-gradient(
+      rgba(0,0,0,0.72),
+      rgba(0,0,0,0.72)
+    ),
+    url("media/backgrounds/refuge-survivor-bg.png") center center / cover no-repeat fixed;
+
+  min-height:100vh;
+  header,
+.card,
+.modal,
+.admin {
+  backdrop-filter: blur(6px);
+}
+
+}
     a{color:var(--brand); text-decoration:none}
     header{
       position:sticky; top:0; z-index:20;
@@ -446,7 +460,7 @@
   // =========================
 
   // Change this PIN.
-  const ADMIN_PIN = "5578";
+  const ADMIN_PIN = "2468";
 
   // When unlocked once, remain unlocked until tab closes.
   const ADMIN_SESSION_KEY = "refuge_admin_unlocked";
@@ -456,7 +470,7 @@
 
   // After you publish the repo, set this:
   // Example: "https://github.com/Elerstinc/Refuge-Game-Catalog/issues/new?template=game_suggestion.yml"
-  window.SUGGEST_URL = "https://github.com/Elerstinc/Refuge-Game-Catalog/issues/new?template=game_suggestion.yml";
+  window.SUGGEST_URL = "https://github.com/Elerstinc/elerstinc.github.io/issues/new?template=game_suggestion.yml";
 
 
   // =========================
@@ -1044,5 +1058,3 @@ function renderMiniMarkdown(input){
 </script>
 </body>
 </html>
-
-
