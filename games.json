@@ -20,7 +20,7 @@
       "materials": [
         "1 Foam Ball/Block"
       ],
-      "rules": "-**Catching Rule**: If a player throws the ball and their ball is directly caught by another player, the thrower is out. Unsuccessful catch attempts result in the victim being out.\n-**Double Possession Rule**: If you had possession of the ball and threw or dropped it, you cannot possess the ball again until at least 1 other player has had possession of the ball.\n-**Out Rule**: If you are out, the highest you can raise yourself is upright on your knees.\n-**Good Samaritan Rule**: If you throw the ball directly to someone who is out and they catch it, you are out; you must roll it to them.\n-**Diplomacy Rule**: No physical violence is allowed at any time. This includes wrestling for the ball, tug of war for the ball, tackling, hitting, and any things of that nature.\n-**Direct Hit Rule**: Only direct hits are valid for getting players out, ricochets, rolls, and grounders are all invalid. But if the ball hits another player and then hits another before it touches the ground, both players are out.\n-**Teaming Rule**: Teaming is strictly forbidden\n-**Targeting Rule**: Targeting is strictly forbidden",
+      "rules": "-**Catching Rule**: If a player throws the ball and their ball is directly caught by another player, the thrower is out. Unsuccessful catch attempts result in the victim being out.\n-**Double Possession Rule**: If you had possession of the ball and threw or dropped it, you cannot possess the ball again until at least 1 other player has had possession of the ball.\n-**Out Rule**: If you are out, the highest you can raise yourself is upright on your knees.\n-**Good Samaritan Rule**: If you throw the ball directly to someone who is out and they catch it, you are out; you must roll it to them.\n-**Diplomacy Rule**: No physical violence is allowed at any time. This includes wrestling for the ball, tug of war for the ball, tackling, hitting, and any things of that nature.\n-**Direct Hit Rule**: Only direct hits are valid for getting players out, ricochets, rolls, and grounders are all invalid. But if the ball hits another player and then hits another before it touches the ground, both players are out.\n-**Teaming Rule**: Teaming is strictly forbidden\n-**Targeting Rule**: Targeting is strictly forbidden\n-**Spawn Protection Rule**: For the next 5 seconds after getting back in, you are immune to being hit.\n-**Dribbling Rule**: If enabled, every player is allowed one dribble, a dribble allows a player to drop the ball, pick it back up, and take another 3 steps free of consequence (ONCE ONLY)\n-**Hot Streak Rule:** If you just got yourself back in the game, you do not have to obey the double possession rule only if the ball is near where you got yourself back in.",
       "setup": "Open Empty Space",
       "howToPlay": [
         "Place the Ball in the middle and have every player start with their back to the wall. The referee counts down from 3, and on go, the game starts. The players must then fight for possession of the ball, whoever has the ball is allowed to take up to 3 steps and then must throw the ball after at most 3 seconds of standing still.",
@@ -29,10 +29,10 @@
         "Once the game reaches 3 players, all players are allowed up to 5 steps",
         "Once it is 1 verse 1, then it is up to 7 steps. The last player standing is the winner."
       ],
-      "safetyNotes": "",
-      "leaderTips": "",
+      "safetyNotes": "Physical Safety:\n\nNo headshots—any throw above the shoulders is invalid.\nKeep throws controlled—no excessive force or point-blank power shots.\nNo physical contact: no pushing, grabbing, or wrestling.\nStay aware of your surroundings to prevent collisions or falls.\nPlayers who are out must remain low and predictable to avoid interference hazards.\n\nGameplay Safety:\n\nRespect the Diplomacy Rule—no aggressive physical play.\nCall a pause if multiple players collide or confusion occurs.\nIf a player is hurt, the game stops immediately.\nMaintain clear boundaries—no chasing outside the designated play area.\n\nFair Play:\n\nNo teaming—this is survival, not alliance.\nNo targeting one player excessively.\nFollow possession and hit rules honestly—integrity sustains the game.",
+      "leaderTips": "Game Flow Tips:\n\nStay unpredictable—movement is your greatest defense.\nControl possession, don’t rush throws. Precision eliminates, panic exposes.\nAlways track the ball, even when you’re not the target.\nUse space wisely—crowding increases your chances of being hit.\nWatch for rebounds or loose balls; they create sudden opportunities.\n\nStrategy Tips:\n\nFake throws to force reactions and create openings.\nTarget distracted or stationary players—they are the easiest to eliminate.\nAvoid becoming predictable—patterns get you out.\nWhen you’re out, position yourself smartly to re-enter quickly.\nLate game (3 players or fewer): patience wins. Wait for mistakes.\n\nAdvanced Play:\n\nUse the dribble strategically to reposition without burning steps.\nTake advantage of spawn protection—re-enter aggressively but wisely.\nControl tempo: slowing the game down can throw others off rhythm.\nIn 1v1, force your opponent into committing first.",
       "photos": [
-        "https://github.com/Elerstinc/Refuge-Game-Catalog/blob/main/Survivor%20Image.png?raw=true"
+        "media/photos/Survivor Image.png"
       ],
       "videoEmbedUrl": ""
     },
@@ -69,7 +69,9 @@
       ],
       "safetyNotes": "DO NOT PARKOUR OVER THE FURNITURE",
       "leaderTips": "",
-      "photos": [],
+      "photos": [
+        "media/photos/Block Tournament Image.png"
+      ],
       "videoEmbedUrl": ""
     },
     {
@@ -173,7 +175,7 @@
       "safetyNotes": "If you're sitting in the chairs, I recommend ducking your head",
       "leaderTips": "",
       "photos": [
-        "https://github.com/Elerstinc/Refuge-Game-Catalog/blob/main/Refuge%20Musical%20Chairs%20of%20Doom%20Image.png?raw=true"
+        "media/photos/Refuge Musical Chairs of Doom Image.png"
       ],
       "videoEmbedUrl": ""
     },
@@ -216,7 +218,9 @@
       ],
       "safetyNotes": "DO NOT PARKOUR OVER THE FURNITURE",
       "leaderTips": "",
-      "photos": [],
+      "photos": [
+        "media/photos/Hunting Season Image.png"
+      ],
       "videoEmbedUrl": ""
     },
     {
@@ -294,13 +298,21 @@
       "timeMinutes": "",
       "energy": 4,
       "materials": [],
-      "rules": "",
-      "setup": "",
-      "howToPlay": [],
-      "safetyNotes": "",
-      "leaderTips": "",
+      "rules": "-**President Rule**: One player is designated as the President. Their objective is survival.\n-**Bodyguard Rule**: One player is assigned as the Bodyguard and must remain in the middle area, prioritizing protection of the President at all times.\n-**Elimination Rule**: All other players work together using one ball to hit the President. A direct hit eliminates the\nPresident.\n-**Succession Rule**: If the President is hit, the player who threw the ball becomes the new President.\n-**Bodyguard Promotion Rule**: When the President is eliminated, the current Bodyguard immediately becomes the new Bodyguard for the new President.\n-**Single Ball Rule**: Only one ball is used at all times.\n-**Objective Rule**: The sole objective of non-protected players is to eliminate the President.",
+      "setup": "Open space with 1 ball. (Caution Tape box that President cannot leave)",
+      "howToPlay": [
+        "Select one player as the President and one as the Bodyguard. The Bodyguard positions themselves in the center with the President nearby.",
+        "All remaining players spread out around them.",
+        "The game begins once the ball is in play.",
+        "Players attempt to gain possession of the ball and coordinate to strike the President.",
+        "The Bodyguard defends by blocking, intercepting, or disrupting throws.",
+        "If the President is hit directly, the thrower becomes the new President, and roles shift accordingly.",
+        "The game continues indefinitely or until a set condition (time, rounds, etc.) is met."
+      ],
+      "safetyNotes": "Avoid headshots or overly aggressive throws. Maintain awareness of surroundings.",
+      "leaderTips": "Attackers should coordinate and fake throws to outmaneuver the Bodyguard.\nThe Bodyguard should stay mobile and anticipate angles, not just react.\nThe President should reposition constantly—stillness invites defeat.",
       "photos": [
-        "https://github.com/Elerstinc/Refuge-Game-Catalog/blob/main/Protect%20the%20President%20Image.png?raw=true"
+        "media/photos/Protect the President Image.png"
       ],
       "videoEmbedUrl": ""
     },
@@ -405,7 +417,7 @@
       "safetyNotes": "",
       "leaderTips": "",
       "photos": [
-        "https://github.com/Elerstinc/Refuge-Game-Catalog/blob/main/Hunting%20Season%20Image.png?raw=true"
+        "media/photos/Hunting Season Image.png"
       ],
       "videoEmbedUrl": ""
     },
@@ -467,7 +479,7 @@
       "safetyNotes": "DO NOT PARKOUR OVER THE FURNITURE",
       "leaderTips": "Referees must be as fair as possible and enforce penalties effectively",
       "photos": [
-        "https://github.com/Elerstinc/Refuge-Game-Catalog/blob/main/Iron%20Guard.png?raw=true"
+        "media/photos/Iron Guard.png"
       ],
       "videoEmbedUrl": ""
     },
@@ -505,7 +517,7 @@
       "safetyNotes": "",
       "leaderTips": "Use this website to host: https://elerstinc.github.io/Refuge-Hot-Potato/",
       "photos": [
-        "https://github.com/Elerstinc/Refuge-Game-Catalog/blob/main/Hot%20Potato.png?raw=true"
+        "media/photos/Hot Potato.png"
       ],
       "videoEmbedUrl": ""
     },
