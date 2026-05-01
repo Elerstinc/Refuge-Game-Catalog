@@ -20,7 +20,7 @@
       "materials": [
         "1 Foam Ball/Block"
       ],
-      "rules": "-**Catching Rule**: If a player throws the ball and their ball is directly caught by another player, the thrower is out. Unsuccessful catch attempts result in the victim being out.\n-**Double Possession Rule**: If you had possession of the ball and threw or dropped it, you cannot possess the ball again until at least 1 other player has had possession of the ball.\n-**Out Rule**: If you are out, the highest you can raise yourself is upright on your knees.\n-**Good Samaritan Rule**: If you throw the ball directly to someone who is out and they catch it, you are out; you must roll it to them.\n-**Diplomacy Rule**: No physical violence is allowed at any time. This includes wrestling for the ball, tug of war for the ball, tackling, hitting, and any things of that nature.\n-**Direct Hit Rule**: Only direct hits are valid for getting players out, ricochets, rolls, and grounders are all invalid. But if the ball hits another player and then hits another before it touches the ground, both players are out.\n-**Teaming Rule**: Teaming is strictly forbidden\n-**Targeting Rule**: Targeting is strictly forbidden\n-**Spawn Protection Rule**: For the next 5 seconds after getting back in, you are immune to being hit.\n-**Dribbling Rule**: If enabled, every player is allowed one dribble, a dribble allows a player to drop the ball, pick it back up, and take another 3 steps free of consequence (ONCE ONLY)\n-**Hot Streak Rule:** If you just got yourself back in the game, you do not have to obey the double possession rule only if the ball is near where you got yourself back in.",
+      "rules": "-**Catching Rule**: If a player throws the ball and their ball is directly caught by another player, the thrower is out. Unsuccessful catch attempts result in the victim being out.\n-**Double Possession Rule**: If you had possession of the ball and threw or dropped it, you cannot possess the ball again until at least 1 other player has had possession of the ball.\n-**Out Rule**: If you are out, the highest you can raise yourself is upright on your knees.\n-**Good Samaritan Rule**: If you throw the ball directly to someone who is out and they catch it, you are out; you must roll it to them.\n-**Diplomacy Rule**: No physical violence is allowed at any time. This includes wrestling for the ball, tug of war for the ball, tackling, hitting, and any things of that nature.\n-**Direct Hit Rule**: Only direct hits are valid for getting players out, ricochets, rolls, and grounders are all invalid. But if the ball hits another player and then hits another before it touches the ground, both players are out.\n-**Teaming Rule**: Teaming is strictly forbidden, unless the game is being played Hunger Games style.\n-**Targeting Rule**: Targeting is strictly forbidden\n-**Spawn Protection Rule**: For the next 5 seconds after getting back in, you are immune to being hit.\n-**Dribbling Rule**: If enabled, every player is allowed one dribble, a dribble allows a player to drop the ball, pick it back up, and take another 3 steps free of consequence (ONCE ONLY)\n-**Hot Streak Rule:** If you just got yourself back in the game, you do not have to obey the double possession rule only if the ball is near where you got yourself back in.\n-**Citizen's Arrest Rule**: If you catch another playing violating the rules and call it out to the referee/other players, then they must face whatever necessary consequence.\n-**Berserker Rule**: If a player who is out catches a direct throw from a player who is in, the thrower is out and the catcher is back in. Also, if a player who is in catches a throw from a player who is out, the catcher is allowed one more step during their throw.",
       "setup": "Open Empty Space",
       "howToPlay": [
         "Place the Ball in the middle and have every player start with their back to the wall. The referee counts down from 3, and on go, the game starts. The players must then fight for possession of the ball, whoever has the ball is allowed to take up to 3 steps and then must throw the ball after at most 3 seconds of standing still.",
@@ -947,6 +947,41 @@
       "safetyNotes": "",
       "leaderTips": "",
       "photos": [],
+      "videoEmbedUrl": ""
+    },
+    {
+      "id": "dizzy-distress",
+      "title": "Dizzy Distress",
+      "icon": "🎲",
+      "category": "Physical",
+      "tags": [
+        "physical",
+        "active"
+      ],
+      "keywords": [
+        "dizzy distress",
+        "chairs"
+      ],
+      "ageRange": "",
+      "groupSize": "6=<",
+      "timeMinutes": "",
+      "energy": 4,
+      "materials": [],
+      "rules": "-**Diplomacy Rule**: No physical violence is allowed at any time.\n-**Chairs Rule**: Players are not allowed to move or shift chairs to sabotage one another. If you don't get a chair, you don't get a chair.",
+      "setup": "Arrange chairs in a circle facing inward.\nUse one fewer chair than the number of players.\nHave all players gather in a smaller circle at the center.\nPrepare music that can be started and stopped at random.",
+      "howToPlay": [
+        "Step 1: All players begin in the center circle.",
+        "Step 2: Music starts; players move freely within the center.",
+        "Step 3: Music stops unexpectedly.",
+        "Step 4: Players rush outward to claim a chair.",
+        "Step 5: One player is left without a chair and is eliminated.",
+        "Step 6: Remove one chair and repeat the cycle."
+      ],
+      "safetyNotes": "Set clear boundaries to prevent collisions.\nEnsure chairs are stable and spaced safely.\nNo physical contact or aggressive behavior allowed.\nMonitor pacing to avoid overcrowding during the rush.",
+      "leaderTips": "Adjust music timing to control intensity and suspense.\nAdd themed music or sound effects for immersion.\nIntroduce slow-motion or reverse movement rounds for variation.\nOccasionally delay the stop to build psychological pressure.\nKeep players evenly spaced at the start for fairness.",
+      "photos": [
+        "media/photos/Dizzying Distress Image.png"
+      ],
       "videoEmbedUrl": ""
     }
   ]
